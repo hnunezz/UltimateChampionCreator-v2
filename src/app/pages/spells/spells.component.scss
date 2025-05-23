@@ -1,0 +1,114 @@
+section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 96px;
+      position: relative;
+
+      div.gradient-container {
+        width: 100%;
+        height: 20%;
+        position: absolute;
+        background: linear-gradient(180deg, rgba(1, 10, 19, 0) 0%, #010a13 90%);
+        top: -228px;
+      }
+
+      div.champion-spell-content {
+        display: flex;
+        flex-direction: row;
+        gap: 60px;
+        width: 100%;
+        justify-content: center;
+        height: auto;
+
+        hr {
+          height: 96px;
+          border-left: 1px solid;
+          border-color: #c89b3c;
+          margin: 0 !important;
+        }
+
+        &_P,
+        &_Q,
+        &_W,
+        &_E,
+        &_R {
+          box-shadow: 0px 0px 20px 3px rgb(0 0 0 / 59%);
+          background: #41474e;
+          width: 96px;
+          height: 96px;
+
+          position: relative;
+          transition: ease-out 0.3s;
+          border: 3px solid transparent;
+
+          app-triangle {
+            display: none;
+          }
+
+          &.active {
+            transition: ease 0.3s;
+            border: 3px solid #c89b3c;
+
+            strong {
+              transition: ease 0.1s;
+              width: 102px;
+              left: -3px;
+
+              border: 10px solid;
+              border-image-slice: 1;
+              border-width: 5px;
+              border-left: 0;
+              border-right: 0;
+              border-bottom: 0;
+              border-image-source: linear-gradient(
+                270.01deg,
+                #90eae6 61.49%,
+                rgba(144, 234, 230, 0) 109.89%
+              );
+            }
+            app-triangle {
+              display: block;
+            }
+          }
+
+          strong {
+            transition: ease-out 0.1s;
+            position: absolute;
+            bottom: -57px;
+            color: white;
+            font-size: 32px;
+            width: 96px;
+            left: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        div.spell-keys {
+          display: flex;
+          gap: 109px;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      div.champion-spell-list {
+        width: 70%;
+        height: 700px;
+        background: #091428;
+        border: 1px solid #c89b3c;
+        border-radius: 4px;
+
+        display: flex;
+        flex-direction: column;
+      }
+    }

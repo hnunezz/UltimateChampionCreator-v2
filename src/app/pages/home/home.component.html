@@ -1,0 +1,47 @@
+@defer (when !loading) {
+<div onselectstart="return false">
+  <main>
+    <!-- <figure [ngClass]="{'first-view': !hasChampionSelected}">
+          @if(hasChampionSelected) {
+            <img
+              [src]="championSelected.image"
+              [alt]="championSelected.name"
+            />
+          }
+        <label>
+          <span> {{ hasChampionSelected ? championSelected.title : 'Ultimate Champion Creator' }} </span>
+          <span> {{ hasChampionSelected ? championSelected.name : 'Bem-Vindo' }} </span>
+
+          @if (!loading) {
+            <ucc-button (onClick)="showChampionList()" styleClass="btn-primary" label="TROCAR CAMPEÃO"></ucc-button>
+          }
+        </label>
+      </figure> -->
+
+    <ucc-spells/>
+
+    <hr>
+
+    <h1> Compartilhe seu Campeão </h1>
+
+    <!-- <app-share-champion
+        [championsSelectResult]="championsSelectResult"
+        [champion]="championSelected"
+      ></app-share-champion> -->
+  </main>
+</div>
+}
+
+
+<!--TODO FUNCIONALIDADE DE LOGIN/LOGOUT/REGISTER-->
+
+<!--TODO OTIMIZAR/CLEAN CODE/MELHORAR CARREGAMENTO DAS IMAGENS-->
+<!--!TODO LOGO-->
+<!--TODO LINKS RODAPE-->
+<!--TODO README GITHUB-->
+<!--TODO VERSAO PARA NAO RESPEITAR AS TECLAS DE HABILIDADES E PODER USAR QUAIS QUISER EM QQR POSICAO (SEM PASSIVA)-->
+
+
+<!--! FAZER ALTERAÇOES PARA ADICIONAR SIGNALS -->
+<!--! FAZER ALTERAÇOES PARA ADICIONAR ASYNC AWAIT NA CHAMADA DAS SKILL -->
+<!--! FAZER ALTERAÇOES PARA TROCAR NOMECLANTURA '''SPELL''' PARA '''SKILL''' -->

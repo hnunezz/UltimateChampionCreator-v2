@@ -1,0 +1,100 @@
+<section>
+  <div class="gradient-container"></div>
+  <div class="champion-spell-content">
+    <div class="champion-spell-content_P" [ngClass]="{'active': false}" (click)="setSpellSelected('P')">
+
+      <!-- @if (championsSelectResult.spells[0]) {
+                <img
+                  loading="lazy"
+                  [src]="championsSelectResult.spells[0].image"
+                  [alt]="spellsSelectionsItems[0].label"
+                >
+              } -->
+      <strong>P</strong>
+
+      @if (spellSelected === 'P'){
+      <ucc-triangle type="P"></ucc-triangle>
+      }
+    </div>
+
+    <hr>
+
+    <div class="spell-keys">
+      <div class="champion-spell-content_Q" [ngClass]="{'active': false}" (click)="setSpellSelected('Q')">
+
+        <!-- @if (championsSelectResult.spells[idx]) {
+              <img
+                loading="lazy"
+                [src]="championsSelectResult.spells[idx].image"
+                [alt]="spell.label"
+              >
+            } -->
+
+        <strong>Q</strong>
+
+        @if (spellSelected === 'Q'){
+        <ucc-triangle type="Q"></ucc-triangle>
+        }
+      </div>
+
+      <div class="champion-spell-content_W" [ngClass]="{'active': false}" (click)="setSpellSelected('W')">
+
+        <!-- @if (championsSelectResult.spells[idx]) {
+              <img
+                loading="lazy"
+                [src]="championsSelectResult.spells[idx].image"
+                [alt]="spell.label"
+              >
+            } -->
+
+        <strong>W</strong>
+
+        @if (spellSelected === 'W'){
+        <ucc-triangle type="W"></ucc-triangle>
+        }
+      </div>
+
+      <div class="champion-spell-content_E" [ngClass]="{'active': false}" (click)="setSpellSelected('E')">
+
+        <!-- @if (championsSelectResult.spells[idx]) {
+              <img
+                loading="lazy"
+                [src]="championsSelectResult.spells[idx].image"
+                [alt]="spell.label"
+              >
+            } -->
+
+        <strong>E</strong>
+
+        @if (spellSelected === 'E'){
+        <ucc-triangle type="E"></ucc-triangle>
+        }
+      </div>
+
+      <div class="champion-spell-content_R" [ngClass]="{'active': false}" (click)="setSpellSelected('R')">
+
+        <!-- @if (championsSelectResult.spells[idx]) {
+              <img
+                loading="lazy"
+                [src]="championsSelectResult.spells[idx].image"
+                [alt]="spell.label"
+              >
+            } -->
+
+        <strong>R</strong>
+
+        @if (spellSelected === 'R'){
+        <ucc-triangle type="R"></ucc-triangle>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="champion-spell-list">
+          @if (!loading) {
+            <app-spell-list
+              (emitSelectedSpell)="setHability($event)"
+            ></app-spell-list>
+          }
+        </div> -->
+</section>
