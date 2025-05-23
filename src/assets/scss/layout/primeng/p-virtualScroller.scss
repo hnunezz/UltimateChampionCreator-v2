@@ -1,0 +1,14 @@
+
+p-virtualscroller {
+  .p-virtualscroller-item {
+    height: 80px !important;
+  }
+  .p-virtualscroller .p-virtualscroller-content {
+    background-color: transparent;
+  }
+
+  // .p-virtualscroller-item{
+  //   height: auto !important;
+  //   padding: 10px 0px;
+  // }
+}

@@ -1,0 +1,116 @@
+section.btn {
+  transition: ease-out 0.3s;
+  position: relative;
+
+  &.disable {
+    transition: ease 0.3s;
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 246px;
+    height: 64px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    font-family: "Caudex", serif;
+
+    padding: 0 !important;
+    color: black;
+    transition: ease-out 0.3s;
+
+    &:hover {
+      cursor: pointer;
+
+      .button {
+        transition: ease 0.3s;
+      }
+    }
+  }
+
+  &.btn-primary {
+    div#outside-border-button {
+      display: block;
+    }
+
+    .button {
+      background: #0bc6e3;
+      border: 1px solid #0bc6e3;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      .button {
+        background-color: transparent;
+        color: #0bc6e3;
+        transition: ease 0.3s;
+      }
+    }
+  }
+
+  &.btn-secondary {
+    .button {
+      width: 136px;
+      height: 41px;
+      background: #ffffff;
+      border: 1px solid #ffffff;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      .button {
+        background-color: transparent;
+        color: white;
+        transition: ease 0.3s;
+      }
+    }
+  }
+
+  div#outside-border-button {
+    display: none;
+
+    > div {
+      background: transparent;
+      display: inline-block;
+      text-decoration: none;
+      position: absolute;
+      top: -4px;
+      left: -6px;
+      width: 256px;
+      height: 70px;
+      border: 1px solid white;
+      clip-path: polygon(18% 0, 100% 0, 100% 75%, 82% 100%, 0 100%, 0% 25%);
+
+      &.diagonal-top {
+        top: -4px;
+        left: -6px;
+        width: 256px;
+        height: 72px;
+        background: #fffffff5;
+        clip-path: polygon(17% 0, 18% 0, 0 26%, 0 24%);
+      }
+
+      &.diagonal-bottom {
+        top: -4px;
+        left: -6px;
+        width: 256px;
+        height: 72px;
+        background: #fffffff5;
+        clip-path: polygon(100% 73%, 100% 75%, 82% 97%, 81% 97%);
+      }
+    }
+  }
+}
+
+:host ::ng-deep .p-button {
+  margin: 0 0.5rem 0 0;
+  min-width: 10rem;
+}

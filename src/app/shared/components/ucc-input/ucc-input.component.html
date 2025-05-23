@@ -1,0 +1,7 @@
+<input
+  [type]="type()"
+  [placeholder]="placeholder()"
+  [(ngModel)]="model"
+  (ngModelChange)="modelChange.emit(this.model)"
+  (keypress)="validateKey($event)"
+>
