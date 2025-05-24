@@ -1,36 +1,44 @@
-<main>
-  <section id="capture">
+<h1 class="text-[#c89b3c] text-center text-[38px] font-bold italic pb-[32px]"> Compartilhe seu Campeão </h1>
+
+<main class="flex flex-col justify-center items-center">
+  <section id="capture" class="w-[50%] bg-[#091428] rounded-sm flex flex-col" style="border: 1px solid #c89b3c;">
     <ul>
       @if (hasChampionSelected()) {
-      <img [src]="urlBaseSplash+ultimateChampion().champion.id+'_0.jpg'" [alt]="ultimateChampion().champion.name"
-        loading="lazy">
+        <img
+          class="aspect-2/1 object-fill w-full"
+          [src]="urlBaseSplash+ultimateChampion().champion.id+'_0.jpg'"
+          [alt]="ultimateChampion().champion.name"
+          loading="lazy"
+        >
       }
       @else {
-      <div class="firstView"></div>
+      <div class="h-[352px] bg-[#010a133b]"></div>
       }
 
-      <li class="gradient-container">
-        <div>
-          <label>
+      <li class="w-full h-[49px] relative">
+        <div class="w-full h-full absolute -top-[50px]" style="background: linear-gradient(180deg,rgba(1, 10, 19, 0) 0%,#091428 80%);">
+          <label class="flex px-[30px] justify-between">
             @if (hasChampionSelected()) {
-            <span>
+            <span class="share-title">
               O Campeão Perfeito de
               <strong>Henrique Nunes</strong>
             </span>
             }
             @else {
-            <span>
+            <span class="share-title">
               Nenhum Campeão Selecionado!
               <strong> - - - </strong>
             </span>
             }
-            <span>{{hasChampionSelected() ? ultimateChampion().champion.name : ''}}</span>
+            <span class="share-title">{{hasChampionSelected() ? ultimateChampion().champion.name : ''}}</span>
           </label>
         </div>
       </li>
 
       @if (ultimateChampion().spells) {
       <li class="champion-spell-details">
+        <strong class="text-white">P</strong>
+
         <figure>
           <img loading="lazy"
             [src]="!hasP ? 'assets/img/no-selected.png' : urlBasePassive+ultimateChampion().spells['P'].image.full"
@@ -46,6 +54,8 @@
         </div>
       </li>
       <li class="champion-spell-details">
+        <strong class="text-white">Q</strong>
+
         <figure>
           <img loading="lazy"
             [src]="!hasQ ? 'assets/img/no-selected.png' : urlBaseSpell+ultimateChampion().spells['Q'].image.full"
@@ -61,6 +71,8 @@
         </div>
       </li>
       <li class="champion-spell-details">
+        <strong class="text-white">W</strong>
+
         <figure>
           <img loading="lazy"
             [src]="!hasW ? 'assets/img/no-selected.png' : urlBaseSpell+ultimateChampion().spells['W'].image.full"
@@ -76,6 +88,8 @@
         </div>
       </li>
       <li class="champion-spell-details">
+        <strong class="text-white">E</strong>
+
         <figure>
           <img loading="lazy"
             [src]="!hasE ? 'assets/img/no-selected.png' : urlBaseSpell+ultimateChampion().spells['E'].image.full"
@@ -91,6 +105,7 @@
         </div>
       </li>
       <li class="champion-spell-details">
+        <strong class="text-white">R</strong>
         <figure>
           <img loading="lazy"
             [src]="!hasR ? 'assets/img/no-selected.png' : urlBaseSpell+ultimateChampion().spells['R'].image.full"

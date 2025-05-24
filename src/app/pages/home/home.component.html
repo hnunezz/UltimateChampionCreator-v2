@@ -1,37 +1,34 @@
 @defer (when !loading) {
-<div onselectstart="return false">
-  <main>
-    <figure [ngClass]="{'first-view': true}" [ngStyle]="{'background-image': 'url(' + urlBaseSplash+ultimateChampion.champion.id+'_0.jpg' + ')'}">
-        <label>
-          <span> {{ hasChampionSelected ? ultimateChampion.champion.title : 'Ultimate Champion Creator' }} </span>
-          <span> {{ hasChampionSelected? ultimateChampion.champion.name : 'Bem-Vindo' }} </span>
+<main class="flex flex-col gap-[48px]">
+  <figure class="relative h-[509px] bg-[rgb(19 19 19 / 79%)] bg-repeat-round bg-cover" [ngClass]="{'first-view': true}"
+    [ngStyle]="{'background-image': 'url(' + urlBaseSplash+ultimateChampion.champion.id+'_0.jpg' + ')'}">
+    <label class="absolute bottom-[62px] left-[20%] right-[20%] gap-[4px] z-1 flex flex-col items-center">
+      <span class="home-title"> {{ hasChampionSelected ? ultimateChampion.champion.title : 'Ultimate Champion Creator' }} </span>
+      <span class="home-title"> {{ hasChampionSelected? ultimateChampion.champion.name : 'Bem-Vindo' }} </span>
 
-          @if (!loading) {
-            <ucc-button styleClass="btn-primary" label="TROCAR CAMPEÃO" (onClick)="openChampionSelectDialog()"></ucc-button>
-          }
-        </label>
-      </figure>
+      @if (!loading) {
+      <ucc-button styleClass="btn-primary" label="TROCAR CAMPEÃO" (onClick)="openChampionSelectDialog()"></ucc-button>
+      }
+    </label>
+  </figure>
 
-    <ucc-spells [spellsList]="spellsList" (spellsChange)="handleSpells($event)"/>
+  <ucc-spells [spellsList]="spellsList" (spellsChange)="handleSpells($event)" />
 
-    <hr>
+  <hr>
 
-    <h1> Compartilhe seu Campeão </h1>
 
-    <ucc-share
-      [ultimateChampion]="ultimateChampion"
-      [hasChampionSelected]="hasChampionSelected"
-      />
-  </main>
-</div>
-<ucc-footer/>
+  <ucc-share [ultimateChampion]="ultimateChampion" [hasChampionSelected]="hasChampionSelected" />
+
+  <ucc-footer />
+</main>
 }
 
 
-<!--TODO adicionar ao share, indicaçao da spell (a esquerda da imagem)-->
 <!--TODO funcao print-->
 <!--TODO funcao salvar-->
 <!--TODO funcao compartilhar em rede social-->
+
+<!--TODO REFAC EM TODO CSS-->
 
 <!--TODO FUNCIONALIDADE DE LOGIN/LOGOUT/REGISTER-->
 

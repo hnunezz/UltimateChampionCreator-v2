@@ -57,13 +57,6 @@ input:-webkit-autofill {
 //   }
 // }
 
-.flex {
-  display: flex;
-}
-.flex-col {
-  flex-direction: column;
-}
-
 @keyframes fadeInAnimation {
   0% {
     opacity: 0;
@@ -73,3 +66,4 @@ input:-webkit-autofill {
     opacity: 1;
   }
 }
+@import "tailwindcss";

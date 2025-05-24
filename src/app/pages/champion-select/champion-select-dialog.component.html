@@ -1,42 +1,50 @@
-<div class="container">
-<main onselectstart="return false">
-  <header>
-    <ucc-input
-      style="width: 100%;"
-      placeholder="Pesquise o campeão"
-      [(model)]="model"
-      (modelChange)="handleSearch()"
-    ></ucc-input>
+<div class="fixed inset-0 flex items-center justify-center z-50 bg-[#010a13]">
+  <main class="rounded-sm bg-[rgba(9, 20, 40, 1)] h-[90%] w-[90%] flex flex-col justify-evenly" style="border: 1px solid rgba(200, 155, 60, 1);">
+    <header class="flex items-center gap-[20px] justify-between p-[20px]">
+      <ucc-input
+        style="width: 100%;"
+        placeholder="Pesquise o campeão"
+        [(model)]="model"
+        (modelChange)="handleSearch()"
+      ></ucc-input>
 
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" (click)="dialogRef.close()">
-      <path d="M30 10L10 30" stroke="#C89B3C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M10 10L30 30" stroke="#C89B3C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </header>
+      <svg class="hover:opacity-[0.8] cursor-pointer" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" (click)="dialogRef.close()">
+        <path d="M30 10L10 30" stroke="#C89B3C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M10 10L30 30" stroke="#C89B3C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </header>
 
-  @if (championList.length > 0) {
-    <section>
-      @for(champ of championList; track champ.name) {
-        <div [ngClass]="{'active': champ.selected}" class="flex flex-col" (click)="selectChamp(champ)">
-          <img [src]="urlBase + champ.image.full" draggable="false" [alt]="champ.name">
-          <span> {{ champ.name }}</span>
-        </div>
-      }
-    </section>
-  } @else {
-    <div class="noData">
-      <strong> Nenhuma informação encontrada! </strong>
-    </div>
-  }
+    @if (championList.length > 0) {
+      <section class="grid max-h-[60%] overflow-auto overflow-x-hidden gap-[20px] p-[20px]" style="grid-auto-columns: 1fr; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));">
+        @for(champ of championList; track champ.name) {
+          <div
+            class="champion flex flex-col gap-[10px] min-h-[210px] items-center cursor-pointer"
+            [ngClass]="{'active': champ.selected}"
+            (click)="selectChamp(champ)"
+          >
+            <img
+              class="w-full opacity-[0.4]"
+              [src]="urlBase + champ.image.full"
+              draggable="false"
+              [alt]="champ.name"
+            >
+            <span class="text-center text-white text-[18px] font-bold"> {{ champ.name }}</span>
+          </div>
+        }
+      </section>
+    } @else {
+      <div class="h-[200px] flex justify-center items-center text-32px text-[#c5c5c5]">
+        <strong> Nenhuma informação encontrada! </strong>
+      </div>
+    }
 
-  <footer>
-    <ucc-button
-      styleClass="btn-primary"
-      label="SELECIONAR"
-      [disable]="hasChampSelected"
-      (onClick)="handleSelectChampion()"
-    ></ucc-button>
-  </footer>
-</main>
-
+    <footer class="justify-center items-center flex h-[12.7%]">
+      <ucc-button
+        styleClass="btn-primary"
+        label="SELECIONAR"
+        [disable]="hasChampSelected"
+        (onClick)="handleSelectChampion()"
+      ></ucc-button>
+    </footer>
+  </main>
 </div>
