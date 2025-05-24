@@ -1,17 +1,19 @@
 import { NgClass } from '@angular/common';
-import { Component, input, output, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { IChampionSpell, ISpellList } from '../../core';
 import { InputTextComponent, TriangleComponent } from '../../shared/components';
+import { SanitizeHtmlPipe } from '../../core/pipe/sanitize-html.pipe';
 
 type SpellTypes = 'P' | 'Q' | 'E' | 'W' | 'R';
 
 @Component({
   selector: 'ucc-spells',
-  imports: [NgClass, TriangleComponent, InputTextComponent],
+  imports: [NgClass, TriangleComponent, InputTextComponent, SanitizeHtmlPipe],
   templateUrl: './spells.component.html',
   styleUrl: './spells.component.scss'
 })
 export class SpellsComponent {
+
   spellsList = input<ISpellList>();
   spellsChange = output<any>();
 
