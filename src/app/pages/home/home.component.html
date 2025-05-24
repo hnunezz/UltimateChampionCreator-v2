@@ -1,35 +1,85 @@
 @defer (when !loading) {
 <div onselectstart="return false">
   <main>
-    <!-- <figure [ngClass]="{'first-view': !hasChampionSelected}">
-          @if(hasChampionSelected) {
-            <img
-              [src]="championSelected.image"
-              [alt]="championSelected.name"
-            />
-          }
+    <figure [ngClass]="{'first-view': true}" [ngStyle]="{'background-image': 'url(' + urlBase+ultimateChampion.champion.id+'_0.jpg' + ')'}">
         <label>
-          <span> {{ hasChampionSelected ? championSelected.title : 'Ultimate Champion Creator' }} </span>
-          <span> {{ hasChampionSelected ? championSelected.name : 'Bem-Vindo' }} </span>
+          <span> {{ hasChampionSelected ? ultimateChampion.champion.title : 'Ultimate Champion Creator' }} </span>
+          <span> {{ hasChampionSelected? ultimateChampion.champion.name : 'Bem-Vindo' }} </span>
 
           @if (!loading) {
-            <ucc-button (onClick)="showChampionList()" styleClass="btn-primary" label="TROCAR CAMPEÃO"></ucc-button>
+            <ucc-button styleClass="btn-primary" label="TROCAR CAMPEÃO" (onClick)="openChampionSelectDialog()"></ucc-button>
           }
         </label>
-      </figure> -->
+      </figure>
 
-    <ucc-spells/>
+    <ucc-spells [spellsList]="spellsList" (spellsChange)="handleSpells($event)"/>
 
     <hr>
 
     <h1> Compartilhe seu Campeão </h1>
 
-    <!-- <app-share-champion
-        [championsSelectResult]="championsSelectResult"
-        [champion]="championSelected"
-      ></app-share-champion> -->
+    <div class="share">
+      <section id="capture">
+        <ul>
+          @if (hasChampionSelected) {
+            <img [src]="urlBase+ultimateChampion.champion.id+'_0.jpg'" [alt]="ultimateChampion.champion.name" loading="lazy">
+          }
+          @else {
+            <div class="firstView"></div>
+          }
+
+          <li class="gradient-container">
+            <div>
+              <label>
+                @if (hasChampionSelected) {
+                  <span>
+                    O Campeão Perfeito de
+                    <strong>Henrique Nunes</strong>
+                  </span>
+                }
+                @else {
+                  <span>
+                    Nenhum Campeão Selecionado!
+                    <strong> - - - </strong>
+                  </span>
+                }
+                <span>{{hasChampionSelected ? ultimateChampion.champion.name : ''}}</span>
+              </label>
+            </div>
+          </li>
+
+          <li class="champion-spell-details">
+            <figure>
+              <img loading="lazy" src="assets/img/no-selected.png"
+                [alt]="!ultimateChampion.spells['P']  ? '?' :  !ultimateChampion.spells['P'].name">
+            </figure>
+
+            <div class="details">
+              <label>
+                <span class="champion-name"> {{ !ultimateChampion.spells['P'] ? '?' : ultimateChampion.spells['P'].championName }} </span>
+                <span class="spell-name"> {{ !ultimateChampion.spells['P'] ? '?' : ultimateChampion.spells['P'].name}} </span>
+              </label>
+
+              <!-- <span class="spell-description" [innerHTML]="!ultimateChampion.spells['P'] ? '- - -' : spell?.description"></span> -->
+            </div>
+          </li>
+        </ul>
+
+        <div style="height: 50px;  display: flex; align-items: center; justify-content: center;">
+          <p style="color: #ffffff;font-weight: 100;font-size: 18px;">Feito com: <strong
+              style="color: #0bc6e3;font-weight: 900;font-size: 24px;">ultimatechampioncreator.netlify.app</strong></p>
+        </div>
+      </section>
+
+      <ucc-button styleClass="btn-primary" label="COMPARTILHE"></ucc-button>
+    </div>
+
+<div id="display-for-canvas" style="display: none;"></div>
+<div id="display-for-generate-print" style="display: none;"></div>
+
   </main>
 </div>
+<ucc-footer/>
 }
 
 

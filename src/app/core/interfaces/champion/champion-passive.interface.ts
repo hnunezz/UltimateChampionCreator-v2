@@ -4,4 +4,6 @@ export interface IChampionPassive {
   name: string;
   description: string;
   image: IChampionImage;
+  championName: string;
+  selected: boolean;
 }

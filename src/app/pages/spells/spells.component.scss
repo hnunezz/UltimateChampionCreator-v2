@@ -1,114 +1,296 @@
-section {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 96px;
+section.container-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 96px;
+  position: relative;
+
+  div.gradient-container {
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    background: linear-gradient(180deg, rgba(1, 10, 19, 0) 0%, #010a13 90%);
+    top: -228px;
+  }
+
+  div.champion-spell-content {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    width: 100%;
+    justify-content: center;
+    height: auto;
+
+    hr {
+      height: 96px;
+      border-left: 1px solid;
+      border-color: #c89b3c;
+      margin: 0 !important;
+    }
+
+    &_P,
+    &_Q,
+    &_W,
+    &_E,
+    &_R {
+      box-shadow: 0px 0px 20px 3px rgb(0 0 0 / 59%);
+      background: #41474e;
+      width: 96px;
+      height: 96px;
+
       position: relative;
+      transition: ease-out 0.3s;
+      border: 3px solid transparent;
 
-      div.gradient-container {
-        width: 100%;
-        height: 20%;
+      app-triangle {
+        display: none;
+      }
+
+      &.active {
+        transition: ease 0.3s;
+        border: 3px solid #c89b3c;
+
+        strong {
+          transition: ease 0.1s;
+          width: 102px;
+          left: -3px;
+
+          border: 10px solid;
+          border-image-slice: 1;
+          border-width: 5px;
+          border-left: 0;
+          border-right: 0;
+          border-bottom: 0;
+          border-image-source: linear-gradient(
+            270.01deg,
+            #90eae6 61.49%,
+            rgba(144, 234, 230, 0) 109.89%
+          );
+        }
+        app-triangle {
+          display: block;
+        }
+      }
+
+      strong {
+        transition: ease-out 0.1s;
         position: absolute;
-        background: linear-gradient(180deg, rgba(1, 10, 19, 0) 0%, #010a13 90%);
-        top: -228px;
-      }
-
-      div.champion-spell-content {
+        bottom: -57px;
+        color: white;
+        font-size: 32px;
+        width: 96px;
+        left: 0px;
         display: flex;
-        flex-direction: row;
-        gap: 60px;
-        width: 100%;
         justify-content: center;
-        height: auto;
-
-        hr {
-          height: 96px;
-          border-left: 1px solid;
-          border-color: #c89b3c;
-          margin: 0 !important;
-        }
-
-        &_P,
-        &_Q,
-        &_W,
-        &_E,
-        &_R {
-          box-shadow: 0px 0px 20px 3px rgb(0 0 0 / 59%);
-          background: #41474e;
-          width: 96px;
-          height: 96px;
-
-          position: relative;
-          transition: ease-out 0.3s;
-          border: 3px solid transparent;
-
-          app-triangle {
-            display: none;
-          }
-
-          &.active {
-            transition: ease 0.3s;
-            border: 3px solid #c89b3c;
-
-            strong {
-              transition: ease 0.1s;
-              width: 102px;
-              left: -3px;
-
-              border: 10px solid;
-              border-image-slice: 1;
-              border-width: 5px;
-              border-left: 0;
-              border-right: 0;
-              border-bottom: 0;
-              border-image-source: linear-gradient(
-                270.01deg,
-                #90eae6 61.49%,
-                rgba(144, 234, 230, 0) 109.89%
-              );
-            }
-            app-triangle {
-              display: block;
-            }
-          }
-
-          strong {
-            transition: ease-out 0.1s;
-            position: absolute;
-            bottom: -57px;
-            color: white;
-            font-size: 32px;
-            width: 96px;
-            left: 0px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-
-          &:hover {
-            cursor: pointer;
-          }
-        }
-        div.spell-keys {
-          display: flex;
-          gap: 109px;
-        }
-
-        img {
-          width: 100%;
-          height: 100%;
-        }
+        align-items: center;
       }
 
-      div.champion-spell-list {
-        width: 70%;
-        height: 700px;
-        background: #091428;
-        border: 1px solid #c89b3c;
-        border-radius: 4px;
-
-        display: flex;
-        flex-direction: column;
+      &:hover {
+        cursor: pointer;
       }
     }
+    div.spell-keys {
+      display: flex;
+      gap: 109px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  div.champion-spell-list {
+    width: 70%;
+    height: 700px;
+    background: #091428;
+    border: 1px solid #c89b3c;
+    border-radius: 4px;
+
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+div.champion-spell-list {
+  main {
+    padding: 0 70px;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    app-input-text {
+      width: 80%;
+      margin: 32px auto;
+      color: white;
+      display: flex;
+    }
+
+    div.container-list {
+      max-height: 570px;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      animation: fadeInAnimation ease 1s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+
+      section.champion-spell-details {
+        display: flex;
+        gap: 48px;
+
+        cursor: pointer;
+
+        figure {
+          height: 80px;
+          width: 80px;
+          position: unset;
+
+          img {
+            height: 80px;
+            width: 80px;
+            border-radius: 4px;
+          }
+        }
+
+        div.details {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 4px;
+
+          label {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            cursor: pointer;
+            span {
+              font-family: "Caudex", serif;
+
+              font-style: normal;
+              font-size: 24px;
+              color: white;
+
+              &.champion-name {
+                font-size: 26px;
+                font-weight: 700;
+                color: #c89b3c;
+              }
+            }
+          }
+
+          span.spell-description {
+            font-family: "Caudex", serif;
+            transition: ease-out 0.3s;
+            background-color: transparent;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+            transition: ease-out 0.3s;
+            color: white;
+            line-height: 18px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            padding: 0px 20px;
+
+            &.hovered {
+              transition: ease 0.3s;
+              max-height: 100%;
+              display: block;
+              padding: 20px 20px;
+            }
+          }
+        }
+
+        &.active {
+          transition: ease 0.3s;
+          background-color: rgba(65, 71, 78, 0.5);
+          border-radius: 4px 0px 0px 4px;
+        }
+      }
+    }
+
+    div.noItem {
+      min-height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      color: #c5c5c5;
+    }
+
+    div.noData {
+      height: 700px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      color: #e4ac8d;
+      filter: drop-shadow(-1px 2px 14px black);
+
+      img {
+        width: 160px;
+        height: 160px;
+        filter: drop-shadow(2px 4px 4px #c89b3c);
+      }
+    }
+
+    @media (max-width: 840px) {
+      div.noData {
+        flex-direction: column;
+        padding: 0 10px;
+      }
+
+      section.champion-spell-details {
+        padding: 0px 10px !important;
+        gap: 10px !important;
+
+        figure {
+          img {
+            height: 50px !important;
+            width: 50px !important;
+          }
+        }
+        div.details {
+          label {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 0 !important;
+
+            span {
+              &.champion-name {
+                font-size: 24px !important;
+              }
+
+              &.spell-name {
+                font-size: 22px !important;
+              }
+            }
+          }
+        }
+      }
+
+      .noData {
+        strong {
+          text-align: center;
+        }
+      }
+
+      app-input-text {
+        width: 90% !important;
+
+        &::ng-deep input {
+          width: 100% !important;
+          padding: 20px 10px !important;
+        }
+      }
+    }
+  }
+}

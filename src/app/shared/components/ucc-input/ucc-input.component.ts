@@ -1,10 +1,11 @@
+import { NgClass, NgStyle } from '@angular/common';
 import { Component, EventEmitter, Input, Output, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ucc-input',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, NgStyle],
   templateUrl: './ucc-input.component.html',
   styleUrls: ['./ucc-input.component.scss']
 })
@@ -12,6 +13,7 @@ export class InputTextComponent {
 
   placeholder = input<string>();
   type = input<string>('text');
+  containerWidth = input<string>('100%');
   @Input() model = '';
 
   @Output() modelChange: EventEmitter<string> = new EventEmitter<string>();

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, from, map, mergeMap, of, toArray } from 'rxjs';
-import { ALL_CHAMPIONS } from '../../../assets/data/all-champions';
 import { IChampion } from '../interfaces';
+import { ALL_CHAMPIONS } from '../../../../public/data/all-champions';
 
 const API_URL = 'https://ddragon.leagueoflegends.com/cdn/15.10.1/data/pt_BR/champion'
 

@@ -10,11 +10,11 @@ import { Component, EventEmitter, input, Output } from '@angular/core';
 export class UccButtonComponent {
   label = input<string>();
   styleClass = input<string>();
-  disable = input<boolean>();
+  disable = input<boolean>(false);
 
   @Output() onClick = new EventEmitter();
 
   onClickEmitter() {
-    if (!this.disable) { this.onClick.emit(); }
+    if (!this.disable()) { this.onClick.emit(); }
   }
 }

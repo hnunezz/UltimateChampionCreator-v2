@@ -24,4 +24,21 @@ export interface IChampion {
   passive: IChampionPassive;
   selected: boolean;
 }
-
+//!full
+// id: string;
+// key: string;
+// name: string;
+// title: string;
+// image: IChampionImage;
+// skins: IChampionSkin[];
+// lore: string;
+// blurb: string;
+// allytips: string[];
+// enemytips: string[];
+// tags: string[];
+// partype: string;
+// info: IChampionInfo;
+// stats: IChampionStats;
+// spells: IChampionSpell[];
+// passive: IChampionPassive;
+// selected: boolean;

@@ -1,7 +1,9 @@
-<input
-  [type]="type()"
-  [placeholder]="placeholder()"
-  [(ngModel)]="model"
-  (ngModelChange)="modelChange.emit(this.model)"
-  (keypress)="validateKey($event)"
->
+<div [ngStyle]="{ 'width': containerWidth() }">
+  <input
+    [type]="type()"
+    [placeholder]="placeholder()"
+    [(ngModel)]="model"
+    (ngModelChange)="modelChange.emit(this.model)"
+    (keypress)="validateKey($event)"
+  >
+</div>

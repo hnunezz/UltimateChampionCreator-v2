@@ -1,7 +1,7 @@
 import { IChampionPassive, IChampionSpell } from "./champion";
 
 export interface ISpellList {
-  P: IChampionPassive[],
+  P: IChampionSpell[],
   Q: IChampionSpell[],
   W: IChampionSpell[],
   E: IChampionSpell[],

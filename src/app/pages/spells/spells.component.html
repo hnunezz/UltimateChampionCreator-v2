@@ -1,18 +1,19 @@
-<section>
+<section class="container-main">
   <div class="gradient-container"></div>
   <div class="champion-spell-content">
-    <div class="champion-spell-content_P" [ngClass]="{'active': false}" (click)="setSpellSelected('P')">
+    <div class="champion-spell-content_P" [ngClass]="{'active': actualSpell === 'P'}" (click)="setSpellSelected('P')">
 
-      <!-- @if (championsSelectResult.spells[0]) {
-                <img
-                  loading="lazy"
-                  [src]="championsSelectResult.spells[0].image"
-                  [alt]="spellsSelectionsItems[0].label"
-                >
-              } -->
+      @if (selectedSpells['P'].championName !== '') {
+        <img
+          loading="lazy"
+          [src]="urlBasePassive + selectedSpells['P'].image.full"
+          [alt]="selectedSpells['P'].championName"
+          onerror="this.onerror=null;this.src='https://opgg-static.akamaized.net/images/profile_icons/profileIcon29.jpg';"
+        >
+      }
       <strong>P</strong>
 
-      @if (spellSelected === 'P'){
+      @if (actualSpell === 'P'){
       <ucc-triangle type="P"></ucc-triangle>
       }
     </div>
@@ -20,81 +21,159 @@
     <hr>
 
     <div class="spell-keys">
-      <div class="champion-spell-content_Q" [ngClass]="{'active': false}" (click)="setSpellSelected('Q')">
+      <div class="champion-spell-content_Q" [ngClass]="{'active': actualSpell === 'Q'}"
+        (click)="setSpellSelected('Q')">
 
-        <!-- @if (championsSelectResult.spells[idx]) {
-              <img
-                loading="lazy"
-                [src]="championsSelectResult.spells[idx].image"
-                [alt]="spell.label"
-              >
-            } -->
+        @if (selectedSpells['Q'].championName !== '') {
+          <img
+            loading="lazy"
+            [src]="urlBaseSpell + selectedSpells['Q'].image.full"
+            [alt]="selectedSpells['Q'].championName"
+            onerror="this.onerror=null;this.src='https://opgg-static.akamaized.net/images/profile_icons/profileIcon29.jpg';"
+          >
+        }
 
         <strong>Q</strong>
 
-        @if (spellSelected === 'Q'){
+        @if (actualSpell === 'Q'){
         <ucc-triangle type="Q"></ucc-triangle>
         }
       </div>
 
-      <div class="champion-spell-content_W" [ngClass]="{'active': false}" (click)="setSpellSelected('W')">
+      <div class="champion-spell-content_W" [ngClass]="{'active': actualSpell === 'W'}"
+        (click)="setSpellSelected('W')">
 
-        <!-- @if (championsSelectResult.spells[idx]) {
-              <img
-                loading="lazy"
-                [src]="championsSelectResult.spells[idx].image"
-                [alt]="spell.label"
-              >
-            } -->
+        @if (selectedSpells['W'].championName !== '') {
+          <img
+            loading="lazy"
+            [src]="urlBaseSpell + selectedSpells['W'].image.full"
+            [alt]="selectedSpells['W'].championName"
+            onerror="this.onerror=null;this.src='https://opgg-static.akamaized.net/images/profile_icons/profileIcon29.jpg';"
+          >
+        }
 
         <strong>W</strong>
 
-        @if (spellSelected === 'W'){
+        @if (actualSpell === 'W'){
         <ucc-triangle type="W"></ucc-triangle>
         }
       </div>
 
-      <div class="champion-spell-content_E" [ngClass]="{'active': false}" (click)="setSpellSelected('E')">
+      <div class="champion-spell-content_E" [ngClass]="{'active': actualSpell === 'E'}"
+        (click)="setSpellSelected('E')">
 
-        <!-- @if (championsSelectResult.spells[idx]) {
-              <img
-                loading="lazy"
-                [src]="championsSelectResult.spells[idx].image"
-                [alt]="spell.label"
-              >
-            } -->
+        @if (selectedSpells['E'].championName !== '') {
+          <img
+            loading="lazy"
+            [src]="urlBaseSpell + selectedSpells['E'].image.full"
+            [alt]="selectedSpells['E'].championName"
+            onerror="this.onerror=null;this.src='https://opgg-static.akamaized.net/images/profile_icons/profileIcon29.jpg';"
+          >
+        }
 
         <strong>E</strong>
 
-        @if (spellSelected === 'E'){
+        @if (actualSpell === 'E'){
         <ucc-triangle type="E"></ucc-triangle>
         }
       </div>
 
-      <div class="champion-spell-content_R" [ngClass]="{'active': false}" (click)="setSpellSelected('R')">
+      <div class="champion-spell-content_R" [ngClass]="{'active': actualSpell === 'R'}"
+        (click)="setSpellSelected('R')">
 
-        <!-- @if (championsSelectResult.spells[idx]) {
-              <img
-                loading="lazy"
-                [src]="championsSelectResult.spells[idx].image"
-                [alt]="spell.label"
-              >
-            } -->
+        @if (selectedSpells['R'].championName !== '') {
+          <img
+            loading="lazy"
+            [src]="urlBaseSpell + selectedSpells['R'].image.full"
+            [alt]="selectedSpells['R'].championName"
+            onerror="this.onerror=null;this.src='https://opgg-static.akamaized.net/images/profile_icons/profileIcon29.jpg';"
+          >
+        }
 
         <strong>R</strong>
 
-        @if (spellSelected === 'R'){
+        @if (actualSpell === 'R'){
         <ucc-triangle type="R"></ucc-triangle>
         }
       </div>
     </div>
   </div>
 
-  <!-- <div class="champion-spell-list">
-          @if (!loading) {
-            <app-spell-list
-              (emitSelectedSpell)="setHability($event)"
-            ></app-spell-list>
+  <div class="champion-spell-list">
+    <main onselectstart="return false">
+      @if (list) {
+        <ucc-input
+          placeholder="Pesquise a habilidade ou campeão"
+          [(model)]="model"
+          (modelChange)="handleSearch()"
+        ></ucc-input>
+
+        <div class="container-list">
+
+          @if (list.length > 0) {
+
+            <!-- <ag-virtual-scroll #vs [items]="listGeneralSpells[selectedSpell].spells" [min-row-height]="120" class="box-border"> -->
+              @for (spell of list; track $index) {'
+              <div class="demo-item">
+                <section
+                  class="champion-spell-details"
+                  [ngClass]="{'active': spell.selected}"
+                  (click)="selectHability(spell)"
+                  >
+                  <figure>
+                    <img
+                      [src]="getUrlImagem(spell.image.full)"
+                      [alt]="spell.championName"
+                    >
+                  </figure>
+
+                  <div class="details">
+                    <label>
+                      <span class="champion-name"> {{ spell.championName }}
+                      </span>
+                      <span class="spell-name">
+                        {{spell.name}}
+                      </span>
+                    </label>
+
+
+                    <span
+                      class="spell-description"
+                      [ngClass]="{'hovered': spell.selected}"
+                    > {{ spell.description }} </span>
+                  </div>
+                </section>
+              </div>
+              }
+            <!-- </ag-virtual-scroll> -->
+          } @else {
+             <div class="noData">
+              <div class="flex flex-col">
+                <strong>  Nenhuma Habilidade Encontrada </strong>
+                <small> Voltar base já!</small>
+              </div>
+
+              <img
+                src="assets/img/no-search.png"
+                alt="no-search.png"
+                loading="lazy"
+          >
+        </div>
           }
-        </div> -->
+        </div>
+      }
+      @else {
+        <div class="noData">
+          <strong> Selecione uma Habilidade para iniciar! </strong>
+
+          <img
+            src="assets/img/SummerSplit2020MissionThumbnail.png"
+            alt="SummerSplit2020MissionThumbnail.png"
+            loading="lazy"
+          >
+        </div>
+      }
+    </main>
+
+  </div>
 </section>

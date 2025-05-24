@@ -1,0 +1,42 @@
+<div class="container">
+<main onselectstart="return false">
+  <header>
+    <ucc-input
+      style="width: 100%;"
+      placeholder="Pesquise o campeão"
+      [(model)]="model"
+      (modelChange)="handleSearch()"
+    ></ucc-input>
+
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" (click)="dialogRef.close()">
+      <path d="M30 10L10 30" stroke="#C89B3C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M10 10L30 30" stroke="#C89B3C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </header>
+
+  @if (championList.length > 0) {
+    <section>
+      @for(champ of championList; track champ.name) {
+        <div [ngClass]="{'active': champ.selected}" class="flex flex-col" (click)="selectChamp(champ)">
+          <img [src]="urlBase + champ.image.full" draggable="false" [alt]="champ.name">
+          <span> {{ champ.name }}</span>
+        </div>
+      }
+    </section>
+  } @else {
+    <div class="noData">
+      <strong> Nenhuma informação encontrada! </strong>
+    </div>
+  }
+
+  <footer>
+    <ucc-button
+      styleClass="btn-primary"
+      label="SELECIONAR"
+      [disable]="hasChampSelected"
+      (onClick)="handleSelectChampion()"
+    ></ucc-button>
+  </footer>
+</main>
+
+</div>

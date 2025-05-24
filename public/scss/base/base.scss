@@ -56,3 +56,20 @@ input:-webkit-autofill {
 //     }
 //   }
 // }
+
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
