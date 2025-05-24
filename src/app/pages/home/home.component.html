@@ -1,7 +1,7 @@
 @defer (when !loading) {
 <div onselectstart="return false">
   <main>
-    <figure [ngClass]="{'first-view': true}" [ngStyle]="{'background-image': 'url(' + urlBase+ultimateChampion.champion.id+'_0.jpg' + ')'}">
+    <figure [ngClass]="{'first-view': true}" [ngStyle]="{'background-image': 'url(' + urlBaseSplash+ultimateChampion.champion.id+'_0.jpg' + ')'}">
         <label>
           <span> {{ hasChampionSelected ? ultimateChampion.champion.title : 'Ultimate Champion Creator' }} </span>
           <span> {{ hasChampionSelected? ultimateChampion.champion.name : 'Bem-Vindo' }} </span>
@@ -18,80 +18,24 @@
 
     <h1> Compartilhe seu Campeão </h1>
 
-    <div class="share">
-      <section id="capture">
-        <ul>
-          @if (hasChampionSelected) {
-            <img [src]="urlBase+ultimateChampion.champion.id+'_0.jpg'" [alt]="ultimateChampion.champion.name" loading="lazy">
-          }
-          @else {
-            <div class="firstView"></div>
-          }
-
-          <li class="gradient-container">
-            <div>
-              <label>
-                @if (hasChampionSelected) {
-                  <span>
-                    O Campeão Perfeito de
-                    <strong>Henrique Nunes</strong>
-                  </span>
-                }
-                @else {
-                  <span>
-                    Nenhum Campeão Selecionado!
-                    <strong> - - - </strong>
-                  </span>
-                }
-                <span>{{hasChampionSelected ? ultimateChampion.champion.name : ''}}</span>
-              </label>
-            </div>
-          </li>
-
-          <li class="champion-spell-details">
-            <figure>
-              <img loading="lazy" src="assets/img/no-selected.png"
-                [alt]="!ultimateChampion.spells['P']  ? '?' :  !ultimateChampion.spells['P'].name">
-            </figure>
-
-            <div class="details">
-              <label>
-                <span class="champion-name"> {{ !ultimateChampion.spells['P'] ? '?' : ultimateChampion.spells['P'].championName }} </span>
-                <span class="spell-name"> {{ !ultimateChampion.spells['P'] ? '?' : ultimateChampion.spells['P'].name}} </span>
-              </label>
-
-              <!-- <span class="spell-description" [innerHTML]="!ultimateChampion.spells['P'] ? '- - -' : spell?.description"></span> -->
-            </div>
-          </li>
-        </ul>
-
-        <div style="height: 50px;  display: flex; align-items: center; justify-content: center;">
-          <p style="color: #ffffff;font-weight: 100;font-size: 18px;">Feito com: <strong
-              style="color: #0bc6e3;font-weight: 900;font-size: 24px;">ultimatechampioncreator.netlify.app</strong></p>
-        </div>
-      </section>
-
-      <ucc-button styleClass="btn-primary" label="COMPARTILHE"></ucc-button>
-    </div>
-
-<div id="display-for-canvas" style="display: none;"></div>
-<div id="display-for-generate-print" style="display: none;"></div>
-
+    <ucc-share
+      [ultimateChampion]="ultimateChampion"
+      [hasChampionSelected]="hasChampionSelected"
+      />
   </main>
 </div>
 <ucc-footer/>
 }
 
 
+<!--TODO adicionar ao share, indicaçao da spell (a esquerda da imagem)-->
+<!--TODO funcao print-->
+<!--TODO funcao salvar-->
+<!--TODO funcao compartilhar em rede social-->
+
 <!--TODO FUNCIONALIDADE DE LOGIN/LOGOUT/REGISTER-->
 
-<!--TODO OTIMIZAR/CLEAN CODE/MELHORAR CARREGAMENTO DAS IMAGENS-->
 <!--!TODO LOGO-->
 <!--TODO LINKS RODAPE-->
 <!--TODO README GITHUB-->
 <!--TODO VERSAO PARA NAO RESPEITAR AS TECLAS DE HABILIDADES E PODER USAR QUAIS QUISER EM QQR POSICAO (SEM PASSIVA)-->
-
-
-<!--! FAZER ALTERAÇOES PARA ADICIONAR SIGNALS -->
-<!--! FAZER ALTERAÇOES PARA ADICIONAR ASYNC AWAIT NA CHAMADA DAS SKILL -->
-<!--! FAZER ALTERAÇOES PARA TROCAR NOMECLANTURA '''SPELL''' PARA '''SKILL''' -->

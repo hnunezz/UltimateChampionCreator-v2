@@ -25,6 +25,11 @@ export class SpellsComponent {
   list: IChampionSpell[];
 
   selectedSpells = {
+    hasP: false,
+    hasQ: false,
+    hasW: false,
+    hasE: false,
+    hasR: false,
     P: {
       name: '',
       description: '',
@@ -115,6 +120,24 @@ export class SpellsComponent {
     this.list.forEach(item => {
       item.selected = item === spell;
     });
+
+    switch (this.actualSpell) {
+      case 'P':
+        this.selectedSpells.hasP = true;
+        break;
+      case 'Q':
+        this.selectedSpells.hasQ = true;
+        break;
+      case 'E':
+        this.selectedSpells.hasE = true;
+        break;
+      case 'W':
+        this.selectedSpells.hasW = true;
+        break;
+      case 'R':
+        this.selectedSpells.hasR = true;
+        break;
+    }
 
     this.selectedSpells[this.actualSpell] = spell;
 

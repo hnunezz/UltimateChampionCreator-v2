@@ -1,1 +1,121 @@
-<p>share works!</p>
+<main>
+  <section id="capture">
+    <ul>
+      @if (hasChampionSelected()) {
+      <img [src]="urlBaseSplash+ultimateChampion().champion.id+'_0.jpg'" [alt]="ultimateChampion().champion.name"
+        loading="lazy">
+      }
+      @else {
+      <div class="firstView"></div>
+      }
+
+      <li class="gradient-container">
+        <div>
+          <label>
+            @if (hasChampionSelected()) {
+            <span>
+              O Campeão Perfeito de
+              <strong>Henrique Nunes</strong>
+            </span>
+            }
+            @else {
+            <span>
+              Nenhum Campeão Selecionado!
+              <strong> - - - </strong>
+            </span>
+            }
+            <span>{{hasChampionSelected() ? ultimateChampion().champion.name : ''}}</span>
+          </label>
+        </div>
+      </li>
+
+      @if (ultimateChampion().spells) {
+      <li class="champion-spell-details">
+        <figure>
+          <img loading="lazy"
+            [src]="!hasP ? 'assets/img/no-selected.png' : urlBasePassive+ultimateChampion().spells['P'].image.full"
+            [alt]="!hasP ? '?' : ultimateChampion().spells['P']?.championName">
+        </figure>
+
+        <div class="details">
+          <label>
+            <span class="champion-name"> {{ !hasP ? '?' : ultimateChampion().spells['P']?.championName }} </span>
+            <span class="spell-name"> {{ !hasP ? '?' : ultimateChampion().spells['P']?.name}} </span>
+          </label>
+
+        </div>
+      </li>
+      <li class="champion-spell-details">
+        <figure>
+          <img loading="lazy"
+            [src]="!hasQ ? 'assets/img/no-selected.png' : urlBaseSpell+ultimateChampion().spells['Q'].image.full"
+            [alt]="!hasQ ? '?' : ultimateChampion().spells['Q']?.championName">
+        </figure>
+
+        <div class="details">
+          <label>
+            <span class="champion-name"> {{ !hasQ ? '?' : ultimateChampion().spells['Q']?.championName }} </span>
+            <span class="spell-name"> {{ !hasQ ? '?' : ultimateChampion().spells['Q']?.name}} </span>
+          </label>
+
+        </div>
+      </li>
+      <li class="champion-spell-details">
+        <figure>
+          <img loading="lazy"
+            [src]="!hasW ? 'assets/img/no-selected.png' : urlBaseSpell+ultimateChampion().spells['W'].image.full"
+            [alt]="!hasW ? '?' : ultimateChampion().spells['W']?.championName">
+        </figure>
+
+        <div class="details">
+          <label>
+            <span class="champion-name"> {{ !hasW ? '?' : ultimateChampion().spells['W']?.championName }} </span>
+            <span class="spell-name"> {{ !hasW ? '?' : ultimateChampion().spells['W']?.name}} </span>
+          </label>
+
+        </div>
+      </li>
+      <li class="champion-spell-details">
+        <figure>
+          <img loading="lazy"
+            [src]="!hasE ? 'assets/img/no-selected.png' : urlBaseSpell+ultimateChampion().spells['E'].image.full"
+            [alt]="!hasE ? '?' : ultimateChampion().spells['E']?.championName">
+        </figure>
+
+        <div class="details">
+          <label>
+            <span class="champion-name"> {{ !hasE ? '?' : ultimateChampion().spells['E']?.championName }} </span>
+            <span class="spell-name"> {{ !hasE ? '?' : ultimateChampion().spells['E']?.name}} </span>
+          </label>
+
+        </div>
+      </li>
+      <li class="champion-spell-details">
+        <figure>
+          <img loading="lazy"
+            [src]="!hasR ? 'assets/img/no-selected.png' : urlBaseSpell+ultimateChampion().spells['R'].image.full"
+            [alt]="!hasR ? '?' : ultimateChampion().spells['R']?.championName">
+        </figure>
+
+        <div class="details">
+          <label>
+            <span class="champion-name"> {{ !hasR ? '?' : ultimateChampion().spells['R']?.championName }} </span>
+            <span class="spell-name"> {{ !hasR ? '?' : ultimateChampion().spells['R']?.name}} </span>
+          </label>
+
+        </div>
+      </li>
+      }
+    </ul>
+
+    <div style="height: 50px;  display: flex; align-items: center; justify-content: center;">
+      <p style="color: #ffffff;font-weight: 100;font-size: 18px;">Feito com: <strong
+          style="color: #0bc6e3;font-weight: 900;font-size: 24px;">ultimatechampioncreator.netlify.app</strong></p>
+    </div>
+  </section>
+
+  <ucc-button styleClass="btn-primary" label="COMPARTILHE"></ucc-button>
+</main>
+
+<div id="display-for-canvas" style="display: none;"></div>
+<div id="display-for-generate-print" style="display: none;"></div>

@@ -1,0 +1,261 @@
+main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  section {
+    width: 50%;
+    background: #091428;
+    border: 1px solid #c89b3c;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    cursor: default !important;
+
+    > img {
+      aspect-ratio: 2/1;
+      object-fit: fill;
+    }
+
+    div.firstView {
+      height: 352px;
+      background-color: #010a133b;
+    }
+
+    ul {
+      > img {
+        aspect-ratio: 2/1;
+        object-fit: fill;
+        width: 100%;
+      }
+
+      li {
+
+        &.gradient-container {
+          width: 100%;
+          height: 49px;
+          position: relative;
+
+          div {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: linear-gradient(
+              180deg,
+              rgba(1, 10, 19, 0) 0%,
+              #091428 80%
+            );
+            top: -50px;
+
+            label {
+              display: flex;
+              padding: 0px 30px;
+              justify-content: space-between;
+
+              span {
+                white-space: nowrap;
+                color: #fff;
+                text-align: center;
+                font-family: Caudex;
+                font-size: 40px;
+                font-style: italic;
+                font-weight: 700;
+                line-height: 125%;
+
+                &:first-child {
+                  font-size: 16px;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: baseline;
+                  justify-content: space-around;
+
+                  strong {
+                    color: #0bc6e3;
+                    font-size: 32px;
+                    font-style: normal;
+                  }
+                }
+
+                &:last-child {
+                  text-transform: uppercase;
+                }
+              }
+            }
+          }
+        }
+
+        &.champion-spell-details {
+          width: calc(100% - 60px);
+          padding: 20px 30px;
+          display: flex;
+          gap: 20px;
+          justify-content: flex-start;
+          align-items: center;
+          flex-direction: row;
+
+          figure {
+            height: 60px;
+            width: 60px;
+            position: unset;
+            padding-top: 6px;
+
+            > img {
+              height: 60px;
+              width: 60px;
+              border-radius: 100px;
+            }
+          }
+
+          div.details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 4px;
+
+            label {
+              display: flex;
+              gap: 24px;
+              align-items: center;
+              cursor: pointer;
+
+              span {
+                font-family: "Caudex", serif;
+
+                font-style: normal;
+                font-size: 24px;
+                color: white;
+
+                &.champion-name {
+                  font-size: 26px;
+                  font-weight: 700;
+                  color: #c89b3c;
+                }
+              }
+            }
+
+            span.spell-description {
+              font-family: "Caudex", serif;
+              transition: ease-out 0.3s;
+              background-color: transparent;
+              font-style: normal;
+              font-weight: 400;
+              font-size: 18px;
+              color: white;
+            }
+          }
+
+          // div.noData {
+          //   display: flex;
+          //   gap: 20px;
+          //   width: calc(100% - 60px);
+          //   padding: 20px 30px;
+          //   width: 100%;
+          //   background: #9191911a;
+          //   min-height: 80px;
+
+          //   img {
+          //     height: 40px !important;
+          //     width: 40px !important;
+          //     padding-top: 6px;
+          //   }
+
+          //   strong {
+          //     color: white;
+          //     display: flex;
+          //     font-size: 26px;
+          //   }
+          // }
+
+          &.active {
+            transition: ease 0.3s;
+            background-color: rgba(65, 71, 78, 0.5);
+          }
+
+          &.noData {
+            min-height: 80px;
+          }
+        }
+      }
+    }
+  }
+}
+
+app-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0px;
+}
+
+@media  (max-width: 480px) {
+  main {
+    section {
+      > img {
+        aspect-ratio: 1/1 !important;
+      }
+
+      width: 90% !important;
+      ul {
+        li{
+          div.details {
+            label {
+              flex-direction: column !important;
+              gap: 0 !important;
+              align-items: flex-start !important;
+
+              span {
+                &.champion-name{
+                  font-size: 24px !important;
+                }
+
+                &.spell-name {
+                  font-size: 22px !important;
+                }
+              }
+            }
+
+            span.spell-description {
+              font-size: 16px !important;
+            }
+          }
+
+          &.gradient-container{
+            div {
+              label {
+                padding: 0px 10px !important;
+
+                span {
+                  &:first-child {
+                    font-size: 14px !important;
+
+                    strong {
+                      color: #0bc6e3;
+                      font-size: 22px  !important;
+                      font-style: normal  !important;
+                    }
+                  }
+
+                  &:last-child {
+                    font-size: 30px !important;
+                    white-space: pre-line;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      > div {
+        p {
+          font-size: 12px !important ;
+          strong {
+            font-size: 14px !important;
+          }
+        }
+      }
+    }
+  }
+}

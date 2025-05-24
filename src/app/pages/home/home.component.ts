@@ -1,16 +1,17 @@
 import { NgClass, NgStyle } from '@angular/common';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ChampionsService, IChampion, IChampionSpell, ISpellList, IUltimateChampion } from '../../core';
-import { TriangleComponent, UccButtonComponent } from '../../shared/components';
-import { SpellsComponent } from '../spells/spells.component';
-import { FooterComponent } from '../footer/footer.component';
+import { ChampionsService, IChampion, IChampionSpell, ISpellList } from '../../core';
 import { DialogService } from '../../core/services/dialog.service';
+import { UccButtonComponent } from '../../shared/components';
 import { ChampionSelectDialogComponent } from '../champion-select/champion-select-dialog.component';
+import { FooterComponent } from '../footer/footer.component';
+import { ShareComponent } from '../share/share.component';
+import { SpellsComponent } from '../spells/spells.component';
 
 @Component({
   selector: 'ucc-home',
-  imports: [NgClass, UccButtonComponent, FooterComponent, SpellsComponent, NgStyle],
+  imports: [NgClass, UccButtonComponent, FooterComponent, SpellsComponent, NgStyle, ShareComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -19,7 +20,7 @@ export class HomeComponent {
   private championsService = inject(ChampionsService);
   private dialogService = inject(DialogService);
 
-  urlBase = 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/'
+  urlBaseSplash = 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/'
   urlBaseSpell = 'https://ddragon.leagueoflegends.com/cdn/15.10.1/img/spell/';
   urlBasePassive = 'https://ddragon.leagueoflegends.com/cdn/15.10.1/img/passive/';
 
