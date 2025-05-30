@@ -1,5 +1,5 @@
 <section class="flex flex-col justify-center items-center gap-[96px] relative">
-  <div class="w-full h-[20%] absolute -top-[228px]" style="background: linear-gradient(180deg, rgba(1, 10, 19, 0) 0%, #010a13 90%);"></div>
+  <div class="shadow w-full h-[20%] absolute -top-[228px]" style="background: linear-gradient(180deg, rgba(1, 10, 19, 0) 0%, #010a13 90%);"></div>
   <div class="champion-spell-content">
     <div class="champion-spell-content_P" [ngClass]="{'active': actualSpell === 'P'}" (click)="setSpellSelected('P')">
 
@@ -99,7 +99,7 @@
     </div>
   </div>
 
-  <div class=" w-[70%] h-[700px] bg-[#091428] rounded-sm flex flex-col" style="border: 1px solid #c89b3c;">
+  <div class="spell-list w-[70%] h-[700px] bg-[#091428] rounded-sm flex flex-col" style="border: 1px solid #c89b3c;">
     <main class="px-[70px] pt-[30px] flex flex-col gap-[30px]">
       @if (list) {
         <ucc-input

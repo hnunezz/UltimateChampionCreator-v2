@@ -167,3 +167,48 @@
   }
 }
 
+@media (max-width: 1350px) {
+  .shadow {
+    top: -291px !important;
+  }
+  .champion-spell-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  hr {
+    height: 0px !important;
+    width: 96px;
+  }
+
+  .spell-keys {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .spell-list {
+    width: 90%;
+  }
+}
+
+@media (max-width: 750px) {
+  .spell-list {
+    width: 90%;
+
+    main {
+      @apply pt-[10px] px-[10px];
+    }
+    .details {
+      label {
+        flex-direction: column;
+        align-items: baseline !important;
+        gap: 0px !important;
+      }
+
+      .spell-description {
+        padding-left: 0px !important;
+      }
+    }
+  }
+}
