@@ -193,6 +193,10 @@
 }
 
 @media (max-width: 750px) {
+  .champion-spell-details  {
+    gap: 16px !important
+  }
+
   .noData {
     flex-direction: column;
     text-align: center;

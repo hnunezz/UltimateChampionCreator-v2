@@ -7,7 +7,7 @@
       <span class="home-title"> {{ hasChampionSelected? ultimateChampion.champion.name : 'Bem-Vindo' }} </span>
 
       @if (!loading) {
-      <ucc-button styleClass="btn-primary" label="TROCAR CAMPEÃO" (onClick)="openChampionSelectDialog()"></ucc-button>
+      <ucc-button styleClass="btn-primary" [label]="!hasChampionSelected ? 'SELECIONE UM CAMPEÃO' : 'TROCAR CAMPEÃO' " (onClick)="openChampionSelectDialog()"></ucc-button>
       }
     </label>
   </figure>

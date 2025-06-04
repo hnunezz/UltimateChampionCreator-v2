@@ -1,6 +1,6 @@
 <section class="flex flex-col justify-center items-center gap-[96px] relative">
   <div class="shadow w-full h-[20%] absolute -top-[228px]" style="background: linear-gradient(180deg, rgba(1, 10, 19, 0) 0%, #010a13 90%);"></div>
-  <div class="champion-spell-content">
+  <div id="champion-spell-content" class="champion-spell-content">
     <div class="champion-spell-content_P" [ngClass]="{'active': actualSpell === 'P'}" (click)="setSpellSelected('P')">
 
       @if (selectedSpells['P'].championName !== '') {
@@ -108,7 +108,7 @@
           (modelChange)="handleSearch()"
         ></ucc-input>
 
-        <div class="container-list max-h-[570px] overflow-auto flex flex-col gap-[20px]">
+        <div id="container-list" class="container-list max-h-[570px] overflow-auto flex flex-col gap-[20px]">
 
           @if (list.length > 0) {
             <!-- <ag-virtual-scroll #vs [items]="listGeneralSpells[selectedSpell].spells" [min-row-height]="120" class="box-border"> -->

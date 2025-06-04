@@ -1,4 +1,4 @@
-import { NgClass } from '@angular/common';
+import { NgClass, ViewportScroller } from '@angular/common';
 import { Component, input, output } from '@angular/core';
 import { IChampionSpell, ISpellList } from '../../core';
 import { InputTextComponent, TriangleComponent } from '../../shared/components';
@@ -89,13 +89,19 @@ export class SpellsComponent {
     },
   }
 
+  constructor(private scroller: ViewportScroller) {}
+
   setSpellSelected(spellType: SpellTypes) {
+
     this.actualSpell = spellType;
 
     const spellList = this.spellsList() as ISpellList;
     this.dataSource = spellList[spellType]
     this.list = this.dataSource
     this.model = ''
+
+    const containerListElement = document.getElementById('container-list') as HTMLElement;
+    containerListElement.scrollTop = 0;
   }
 
   getUrlImagem(image: string): string {
@@ -144,5 +150,14 @@ export class SpellsComponent {
     this.selectedSpells[this.actualSpell] = spell;
 
     this.spellsChange.emit(this.selectedSpells)
+
+
+    const el = document.getElementById('champion-spell-content') as HTMLElement;
+
+    el.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest"
+    });
   }
 }
