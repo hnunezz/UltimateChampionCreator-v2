@@ -101,7 +101,18 @@ export class SpellsComponent {
     this.model = ''
 
     const containerListElement = document.getElementById('container-list') as HTMLElement;
-    containerListElement.scrollTop = 0;
+    containerListElement.scrollIntoView({
+     behavior: "smooth",
+     block: "start",
+     inline: "nearest"
+   });
+
+    const el = document.getElementById('spell-list') as HTMLElement;
+     el.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest"
+    });
   }
 
   getUrlImagem(image: string): string {
