@@ -1,6 +1,6 @@
 import { NgClass, ViewportScroller } from '@angular/common';
-import { Component, input, output } from '@angular/core';
-import { IChampionSpell, ISpellList } from '../../core';
+import { Component, inject, input, output } from '@angular/core';
+import { ChampionsService, IChampionSpell, ISpellList } from '../../core';
 import { InputTextComponent, TriangleComponent } from '../../shared/components';
 import { SanitizeHtmlPipe } from '../../core/pipe/sanitize-html.pipe';
 
@@ -13,6 +13,7 @@ type SpellTypes = 'P' | 'Q' | 'E' | 'W' | 'R';
   styleUrl: './spells.component.scss'
 })
 export class SpellsComponent {
+  private championsService = inject(ChampionsService);
 
   spellsList = input<ISpellList>();
   spellsChange = output<any>();
@@ -39,6 +40,7 @@ export class SpellsComponent {
         full: '',
         sprite: '',
         group: '',
+        base64: '',
       },
       championName: '',
       selected: false,
@@ -50,6 +52,7 @@ export class SpellsComponent {
         full: '',
         sprite: '',
         group: '',
+        base64: '',
       },
       championName: '',
       selected: false,
@@ -61,6 +64,7 @@ export class SpellsComponent {
         full: '',
         sprite: '',
         group: '',
+        base64: '',
       },
       championName: '',
       selected: false,
@@ -72,6 +76,7 @@ export class SpellsComponent {
         full: '',
         sprite: '',
         group: '',
+        base64: '',
       },
       championName: '',
       selected: false,
@@ -83,13 +88,20 @@ export class SpellsComponent {
         full: '',
         sprite: '',
         group: '',
+        base64: '',
       },
       championName: '',
       selected: false,
     },
   }
 
-  constructor(private scroller: ViewportScroller) {}
+  private isMobile: boolean = false
+
+  constructor() {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      this.isMobile = true;
+    }
+  }
 
   setSpellSelected(spellType: SpellTypes) {
 
@@ -100,15 +112,19 @@ export class SpellsComponent {
     this.list = this.dataSource
     this.model = ''
 
-    const containerListElement = document.getElementById('container-list') as HTMLElement;
-    containerListElement.scrollTop = 0;
+    setTimeout(() => {
+      const containerListElement = document.getElementById('container-list') as HTMLElement;
+      containerListElement.scrollTop = 0;
+    }, 0);
 
-    const el = document.getElementById('spell-list') as HTMLElement;
-     el.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "nearest"
-    });
+    if (this.isMobile) {
+      const el = document.getElementById('spell-list') as HTMLElement;
+      el.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest"
+      });
+    }
   }
 
   getUrlImagem(image: string): string {
@@ -136,35 +152,32 @@ export class SpellsComponent {
       item.selected = item === spell;
     });
 
-    switch (this.actualSpell) {
-      case 'P':
-        this.selectedSpells.hasP = true;
-        break;
-      case 'Q':
-        this.selectedSpells.hasQ = true;
-        break;
-      case 'E':
-        this.selectedSpells.hasE = true;
-        break;
-      case 'W':
-        this.selectedSpells.hasW = true;
-        break;
-      case 'R':
-        this.selectedSpells.hasR = true;
-        break;
+    const spellKey = this.actualSpell;
+
+    if (['P', 'Q', 'E', 'W', 'R'].includes(spellKey)) {
+      this.selectedSpells[`has${spellKey}`] = true;
+      this.selectedSpells[spellKey] = spell;
     }
 
-    this.selectedSpells[this.actualSpell] = spell;
+    const imageUrl = this.getUrlImagem(spell.image.full);
+    this.championsService.converterImagemParaDataURI(imageUrl).then(dataURI => {
+      this.selectedSpells[this.actualSpell].image.base64 = dataURI
+    })
+      .catch(erro => {
+        console.error('Erro ao converter imagem:', erro);
+      });
+
 
     this.spellsChange.emit(this.selectedSpells)
 
+    if (this.isMobile) {
+      const el = document.getElementById('champion-spell-content') as HTMLElement;
 
-    const el = document.getElementById('champion-spell-content') as HTMLElement;
-
-    el.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "nearest"
-    });
+      el.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest"
+      });
+    }
   }
 }

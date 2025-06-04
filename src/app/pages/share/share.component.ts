@@ -1,6 +1,6 @@
-import { Component, input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, input } from '@angular/core';
+import html2canvas from 'html2canvas';
 import { UccButtonComponent } from '../../shared/components';
-import { IChampion } from '../../core';
 
 @Component({
   selector: 'ucc-share',
@@ -15,6 +15,8 @@ export class ShareComponent {
   urlBaseSplash = 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/'
   urlBaseSpell = 'https://ddragon.leagueoflegends.com/cdn/15.10.1/img/spell/';
   urlBasePassive = 'https://ddragon.leagueoflegends.com/cdn/15.10.1/img/passive/';
+
+  base64P: any;
 
   get hasP(): boolean {
     return this.ultimateChampion().spells.hasP;
@@ -32,4 +34,38 @@ export class ShareComponent {
     return this.ultimateChampion().spells.hasR;
   }
 
+  capturedImage: any;
+
+  clickme() {
+    html2canvas(document.querySelector("#capture") as HTMLElement).then(async canvas => {
+      this.capturedImage = canvas.toDataURL();
+
+      canvas.toBlob(function (blob) {
+        var reader = new FileReader();
+        reader.readAsDataURL(blob as Blob);
+        reader.onloadend = function () {
+          let base64data = reader.result;
+        }
+
+      });
+    });
+
+    const imageElement = document.getElementById("YourImage")as HTMLElement;
+    const imageStringFodase = imageElement.getAttribute("src") as string;
+
+    const saveImage = (downloadUrl: string) => {
+      const downloadImage = document.createElement("a");
+      document.body.appendChild(downloadImage);
+      downloadImage.setAttribute("download", "image");
+      downloadImage.href = downloadUrl;
+      downloadImage.click();
+      downloadImage.remove();
+    };
+
+    saveImage(imageStringFodase)
+  }
+
+
 }
+
+

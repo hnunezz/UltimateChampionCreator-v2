@@ -1,7 +1,7 @@
 import { Component, Inject, inject, input } from '@angular/core';
 import { InputTextComponent, UccButtonComponent } from '../../shared/components';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { IChampion } from '../../core';
+import { ChampionsService, IChampion } from '../../core';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -11,11 +11,16 @@ import { NgClass } from '@angular/common';
   styleUrl: './champion-select-dialog.component.scss'
 })
 export class ChampionSelectDialogComponent {
+  private championsService = inject(ChampionsService);
+
   dialogRef = inject<DialogRef<IChampion>>(DialogRef<ChampionSelectDialogComponent>);
+
   private championDataSource: IChampion[] = [];
   championList: IChampion[] = [];
 
   urlBase = 'https://ddragon.leagueoflegends.com/cdn/15.10.1/img/champion/'
+  private urlBaseSplash = 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/'
+
   model: string;
 
   get hasChampSelected(): boolean {
@@ -37,7 +42,19 @@ export class ChampionSelectDialogComponent {
   }
 
   handleSelectChampion() {
-    const champSelect = this.championDataSource.find((champ) => champ.selected);
+    const champSelect = this.championDataSource.find((champ) => champ.selected) as IChampion;
+
+    const imageUrl = this.urlBaseSplash + champSelect?.id+'_0.jpg';
+    console.log(imageUrl);
+    this.championsService.converterImagemParaDataURI(imageUrl).then(dataURI => {
+      champSelect.image.base64 = dataURI
+
+      console.log(champSelect)
+    })
+      .catch(erro => {
+        console.error('Erro ao converter imagem:', erro);
+      });
+
     this.dialogRef.close(champSelect);
   }
 

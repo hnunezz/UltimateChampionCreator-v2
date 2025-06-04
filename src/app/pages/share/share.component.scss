@@ -108,6 +108,11 @@ ucc-button {
   }
 }
 @media (max-width: 680px) {
+  .champion-spell-details {
+    width: auto;
+    padding: 20px 0 !important;
+    padding-left: 20px !important;
+  }
 
   label {
     flex-direction: column;
@@ -128,6 +133,11 @@ ucc-button {
   .details {
     label {
       gap: 0px !important ;
+
+      span.spell-name {
+        font-size: 14px !important;
+            white-space: break-spaces !important;
+      }
     }
   }
 }

@@ -4,19 +4,16 @@
   <section id="capture" class="w-[50%] bg-[#091428] rounded-sm flex flex-col" style="border: 1px solid #c89b3c;">
     <ul>
       @if (hasChampionSelected()) {
-        <img
-          class="aspect-2/1 object-fill w-full"
-          [src]="urlBaseSplash+ultimateChampion().champion.id+'_0.jpg'"
-          [alt]="ultimateChampion().champion.name"
-          loading="lazy"
-        >
+      <img class="aspect-2/1 object-fill w-full" [src]="ultimateChampion().champion.image.base64"
+        [alt]="ultimateChampion().champion.name" loading="lazy">
       }
       @else {
       <div class="h-[352px] bg-[#010a133b]"></div>
       }
 
       <li class="w-full h-[49px] relative">
-        <div class="w-full h-full absolute -top-[49px]" style="background: linear-gradient(180deg,rgba(1, 10, 19, 0) 0%,#091428 80%);">
+        <div class="w-full h-full absolute -top-[49px]"
+          style="background: linear-gradient(180deg,rgba(1, 10, 19, 0) 0%,#091428 80%);">
           <label class="flex px-[30px] justify-between">
             @if (hasChampionSelected()) {
             <span class="share-title">
@@ -37,11 +34,11 @@
 
       @if (ultimateChampion().spells) {
       <li class="champion-spell-details">
-        <strong class="text-white">P</strong>
+        <strong class="text-white w-[10px]">P</strong>
 
         <figure>
           <img loading="lazy"
-            [src]="!hasP ? 'assets/img/no-selected.png' : urlBasePassive+ultimateChampion().spells['P'].image.full"
+            [src]="!hasP ? 'assets/img/no-selected.png' : ultimateChampion().spells['P'].image.base64"
             [alt]="!hasP ? '?' : ultimateChampion().spells['P']?.championName">
         </figure>
 
@@ -54,11 +51,11 @@
         </div>
       </li>
       <li class="champion-spell-details">
-        <strong class="text-white">Q</strong>
+        <strong class="text-white w-[10px]">Q</strong>
 
         <figure>
           <img loading="lazy"
-            [src]="!hasQ ? 'assets/img/no-selected.png' : urlBaseSpell+ultimateChampion().spells['Q'].image.full"
+            [src]="!hasQ ? 'assets/img/no-selected.png' : ultimateChampion().spells['Q'].image.base64"
             [alt]="!hasQ ? '?' : ultimateChampion().spells['Q']?.championName">
         </figure>
 
@@ -71,11 +68,11 @@
         </div>
       </li>
       <li class="champion-spell-details">
-        <strong class="text-white">W</strong>
+        <strong class="text-white w-[10px]">W</strong>
 
         <figure>
           <img loading="lazy"
-            [src]="!hasW ? 'assets/img/no-selected.png' : urlBaseSpell+ultimateChampion().spells['W'].image.full"
+            [src]="!hasW ? 'assets/img/no-selected.png' : ultimateChampion().spells['W'].image.base64"
             [alt]="!hasW ? '?' : ultimateChampion().spells['W']?.championName">
         </figure>
 
@@ -88,11 +85,11 @@
         </div>
       </li>
       <li class="champion-spell-details">
-        <strong class="text-white">E</strong>
+        <strong class="text-white w-[10px]">E</strong>
 
         <figure>
           <img loading="lazy"
-            [src]="!hasE ? 'assets/img/no-selected.png' : urlBaseSpell+ultimateChampion().spells['E'].image.full"
+            [src]="!hasE ? 'assets/img/no-selected.png' : ultimateChampion().spells['E'].image.base64"
             [alt]="!hasE ? '?' : ultimateChampion().spells['E']?.championName">
         </figure>
 
@@ -105,10 +102,10 @@
         </div>
       </li>
       <li class="champion-spell-details">
-        <strong class="text-white">R</strong>
+        <strong class="text-white w-[10px]">R</strong>
         <figure>
           <img loading="lazy"
-            [src]="!hasR ? 'assets/img/no-selected.png' : urlBaseSpell+ultimateChampion().spells['R'].image.full"
+            [src]="!hasR ? 'assets/img/no-selected.png' : ultimateChampion().spells['R'].image.base64"
             [alt]="!hasR ? '?' : ultimateChampion().spells['R']?.championName">
         </figure>
 
@@ -124,13 +121,10 @@
     </ul>
 
     <div style="height: 50px;  display: flex; align-items: center; justify-content: center;">
-      <p style="color: #ffffff;font-weight: 100;font-size: 14px;">Feito com: <strong
-          style="color: #0bc6e3;font-weight: 900;font-size: 18px;">ultimatechampioncreator.netlify.app</strong></p>
+      <strong style="color: #0bc6e3;font-weight: 900;font-size: 18px;">ultimatechampioncreator.netlify.app</strong>
     </div>
   </section>
 
-  <ucc-button styleClass="btn-primary" label="COMPARTILHE"></ucc-button>
+  <ucc-button styleClass="btn-primary" label="COMPARTILHE" (onClick)="clickme()"></ucc-button>
+  <img id="YourImage" src={{capturedImage}}>
 </main>
-
-<div id="display-for-canvas" style="display: none;"></div>
-<div id="display-for-generate-print" style="display: none;"></div>
