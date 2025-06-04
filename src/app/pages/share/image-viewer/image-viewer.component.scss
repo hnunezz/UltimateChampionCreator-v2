@@ -1,0 +1,18 @@
+main {
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
+  header {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    padding: 10px;
+    padding-right: 30px;
+  }
+
+  img {
+    height: 80%;
+    width: 90%;
+  }
+}

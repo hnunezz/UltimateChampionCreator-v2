@@ -1,6 +1,8 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import html2canvas from 'html2canvas';
 import { UccButtonComponent } from '../../shared/components';
+import { DialogService } from '../../core/services/dialog.service';
+import { ImageViewerComponent } from './image-viewer/image-viewer.component';
 
 @Component({
   selector: 'ucc-share',
@@ -9,6 +11,8 @@ import { UccButtonComponent } from '../../shared/components';
   styleUrl: './share.component.scss'
 })
 export class ShareComponent {
+  private dialogService = inject(DialogService);
+
   ultimateChampion = input<any>();
   hasChampionSelected = input<boolean>();
 
@@ -16,7 +20,7 @@ export class ShareComponent {
   urlBaseSpell = 'https://ddragon.leagueoflegends.com/cdn/15.10.1/img/spell/';
   urlBasePassive = 'https://ddragon.leagueoflegends.com/cdn/15.10.1/img/passive/';
 
-  base64P: any;
+  private capturedImage: any;
 
   get hasP(): boolean {
     return this.ultimateChampion().spells.hasP;
@@ -34,9 +38,7 @@ export class ShareComponent {
     return this.ultimateChampion().spells.hasR;
   }
 
-  capturedImage: any;
-
-  clickme() {
+  download() {
     html2canvas(document.querySelector("#capture") as HTMLElement).then(async canvas => {
       this.capturedImage = canvas.toDataURL();
 
@@ -48,23 +50,38 @@ export class ShareComponent {
         }
 
       });
+
+      if (!this.isMobile) {
+        const imageElement = document.getElementById("YourImage") as HTMLElement;
+        const imageStringFodase = imageElement.getAttribute("src") as string;
+
+        const saveImage = (downloadUrl: string) => {
+          const downloadImage = document.createElement("a");
+          document.body.appendChild(downloadImage);
+          downloadImage.setAttribute("download", "image");
+          downloadImage.href = downloadUrl;
+          downloadImage.click();
+          downloadImage.remove();
+        };
+
+        saveImage(imageStringFodase)
+      } else {
+        this.dialogService
+          .open(ImageViewerComponent, {
+            data: {
+              capturedImage: this.capturedImage
+            }
+          })
+          .subscribe((response) => {
+          });
+      }
     });
 
-    const imageElement = document.getElementById("YourImage")as HTMLElement;
-    const imageStringFodase = imageElement.getAttribute("src") as string;
-
-    const saveImage = (downloadUrl: string) => {
-      const downloadImage = document.createElement("a");
-      document.body.appendChild(downloadImage);
-      downloadImage.setAttribute("download", "image");
-      downloadImage.href = downloadUrl;
-      downloadImage.click();
-      downloadImage.remove();
-    };
-
-    saveImage(imageStringFodase)
   }
 
+  private isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+  }
 
 }
 

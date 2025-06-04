@@ -45,11 +45,8 @@ export class ChampionSelectDialogComponent {
     const champSelect = this.championDataSource.find((champ) => champ.selected) as IChampion;
 
     const imageUrl = this.urlBaseSplash + champSelect?.id+'_0.jpg';
-    console.log(imageUrl);
     this.championsService.converterImagemParaDataURI(imageUrl).then(dataURI => {
       champSelect.image.base64 = dataURI
-
-      console.log(champSelect)
     })
       .catch(erro => {
         console.error('Erro ao converter imagem:', erro);
