@@ -51,7 +51,7 @@ export class ShareComponent {
 
       });
 
-      if (!this.isMobile) {
+      if (!this.isMobile()) {
         const imageElement = document.getElementById("YourImage") as HTMLElement;
         const imageStringFodase = imageElement.getAttribute("src") as string;
 
