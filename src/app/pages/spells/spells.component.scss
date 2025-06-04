@@ -193,6 +193,11 @@
 }
 
 @media (max-width: 750px) {
+  .noData {
+    flex-direction: column;
+    text-align: center;
+  }
+
   .spell-list {
     width: 90%;
 
