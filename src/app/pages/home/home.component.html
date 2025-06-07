@@ -3,15 +3,16 @@
   <figure class="relative h-[509px] bg-[rgb(19 19 19 / 79%)] bg-repeat-round bg-cover" [ngClass]="{'first-view': true}"
     [ngStyle]="{'background-image': 'url(' + urlBaseSplash+ultimateChampion.champion.id+'_0.jpg' + ')'}">
     <label class="absolute bottom-[62px] left-[20%] right-[20%] gap-[4px] z-1 flex flex-col items-center">
-      <span class="home-title"> {{ hasChampionSelected ? ultimateChampion.champion.title : 'Ultimate Champion Creator' }} </span>
+      <span class="home-title title"> {{ hasChampionSelected ? ultimateChampion.champion.title : 'Ultimate Champion Creator' }} </span>
       <span class="home-title"> {{ hasChampionSelected? ultimateChampion.champion.name : 'Bem-Vindo' }} </span>
 
       @if (!loading) {
-      <ucc-button styleClass="btn-primary" [label]="!hasChampionSelected ? 'SELECIONE UM CAMPEÃO' : 'TROCAR CAMPEÃO' " (onClick)="openChampionSelectDialog()"></ucc-button>
+      <ucc-button [disable]="rule" styleClass="btn-primary" [label]="!hasChampionSelected ? 'SELECIONE UM CAMPEÃO' : 'TROCAR CAMPEÃO' " (onClick)="openChampionSelectDialog()"></ucc-button>
       }
     </label>
   </figure>
 
+  <div class="spells-step">&nbsp;</div>
   <ucc-spells [spellsList]="spellsList" (spellsChange)="handleSpells($event)" />
 
   <hr>
@@ -22,14 +23,6 @@
   <ucc-footer />
 </main>
 }
-
-
-<!--TODO funcao print-->
-<!--TODO funcao salvar-->
-<!--TODO funcao compartilhar em rede social-->
-
-
-<!--TODO FUNCIONALIDADE DE LOGIN/LOGOUT/REGISTER-->
 
 <!--!TODO LOGO-->
 <!--TODO LINKS RODAPE-->

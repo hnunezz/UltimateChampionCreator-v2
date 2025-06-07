@@ -1,6 +1,7 @@
 import { NgClass, NgStyle } from '@angular/common';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ShepherdService } from 'angular-shepherd';
 import { ChampionsService, IChampion, IChampionSpell, ISpellList } from '../../core';
 import { DialogService } from '../../core/services/dialog.service';
 import { UccButtonComponent } from '../../shared/components';
@@ -26,6 +27,7 @@ export class HomeComponent {
 
   hasChampionSelected: boolean = false;
   loading: boolean = false;
+  rule: boolean = false;
   championsList: IChampion[] = [];
 
   spellsList: ISpellList = {
@@ -47,7 +49,7 @@ export class HomeComponent {
     }
   };
 
-  constructor() {
+  constructor(private shepherdService: ShepherdService) {
     this.getAll();
   }
 
@@ -65,6 +67,8 @@ export class HomeComponent {
           this.getSpells(this.championsList);
 
           this.loading = false;
+
+          this.fucksteps()
         },
         error: (errorMessage: string) =>
           console.error(errorMessage),
@@ -103,5 +107,97 @@ export class HomeComponent {
       this.spellsList.E.push({ ...champion.spells[2], championName: champion.name, selected: false });
       this.spellsList.R.push({ ...champion.spells[3], championName: champion.name, selected: false });
     })
+  }
+
+  fucksteps() {
+    const STEPS_BUTTONS = {
+      back: {
+        classes: "back-button",
+        secondary: true,
+        text: "Voltar",
+        type: "back",
+      },
+      cancel: {
+        classes: "cancel-button",
+        secondary: true,
+        text: "Sair",
+        type: "cancel",
+      },
+      next: {
+        classes: "next-button",
+        text: "Próximo",
+        type: "next"
+      }
+    };
+
+    this.shepherdService.defaultStepOptions = {
+      classes: 'custom-class-name-1 custom-class-name-2',
+      scrollTo: false,
+      cancelIcon: {
+        enabled: true
+      }
+    };
+
+    this.shepherdService.modal = true;
+    this.shepherdService.addSteps([
+      {
+        attachTo: {
+          element: ".title",
+          on: "bottom"
+        },
+        scrollTo: true,
+        buttons: [STEPS_BUTTONS.cancel, STEPS_BUTTONS.next],
+        classes: "custom-class-name-1 custom-class-name-2",
+        id: "intro",
+        title: "Ultimate Champion Creator",
+        text: `Bem-Vindo, <br/> Vamos fazer um tour para entender a criação de seu campeão?`
+      },
+      {
+        attachTo: {
+          element: "ucc-button",
+          on: "top"
+        },
+        scrollTo: true,
+        buttons: [
+          STEPS_BUTTONS.back,
+          STEPS_BUTTONS.next
+        ],
+        classes: "custom-class-name-1 custom-class-name-2",
+        id: "installation",
+        title: "Seleção do campeão",
+        text: "Primeiro devemos escolher um campeão para ter suas habilidade modificadas!"
+
+      },
+      {
+        attachTo: {
+          element: ".champion-spell-content",
+          on: "bottom"
+        },
+        scrollTo: true,
+        buttons: [STEPS_BUTTONS.back, STEPS_BUTTONS.next],
+        classes: "custom-class-name-1 custom-class-name-2",
+        id: "usage",
+        title: "Seleção das habilidades",
+        text: "Devemos selecionar uma habilidade para cada tecla, incluindo a passiva <br/> Momento de pegar aquela skill roubada!",
+        cancelIcon: {
+          enabled: false
+        }
+      },
+      {
+        attachTo: {
+          element: ".share-button",
+          on: "bottom"
+        },
+        scrollTo: true,
+        buttons: [STEPS_BUTTONS.back, STEPS_BUTTONS.cancel],
+        classes: "custom-class-name-1 custom-class-name-2",
+        id: "modal",
+        text: `Com seu campeão montado, compartilhe com seus amigos!`,
+        cancelIcon: {
+          enabled: false
+        }
+      }
+    ]);
+    this.shepherdService.start();
   }
 }

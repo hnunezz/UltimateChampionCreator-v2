@@ -20,7 +20,7 @@ export class ShareComponent {
   urlBaseSpell = 'https://ddragon.leagueoflegends.com/cdn/15.10.1/img/spell/';
   urlBasePassive = 'https://ddragon.leagueoflegends.com/cdn/15.10.1/img/passive/';
 
-  private capturedImage: any;
+  capturedImage: any;
 
   get hasP(): boolean {
     return this.ultimateChampion().spells.hasP;
@@ -37,6 +37,9 @@ export class ShareComponent {
   get hasR(): boolean {
     return this.ultimateChampion().spells.hasR;
   }
+  get enableToShare(): boolean {
+    return !(this.hasP && this.hasQ && this.hasW && this.hasE && this.hasR && this.hasChampionSelected() as boolean);
+  }
 
   download() {
     html2canvas(document.querySelector("#capture") as HTMLElement).then(async canvas => {
@@ -52,19 +55,21 @@ export class ShareComponent {
       });
 
       if (!this.isMobile()) {
-        const imageElement = document.getElementById("YourImage") as HTMLElement;
-        const imageStringFodase = imageElement.getAttribute("src") as string;
+        setTimeout(() => {
+          const imageElement = document.getElementById("YourImage") as HTMLElement;
+          const imageStringFodase = imageElement.getAttribute("src") as string;
 
-        const saveImage = (downloadUrl: string) => {
-          const downloadImage = document.createElement("a");
-          document.body.appendChild(downloadImage);
-          downloadImage.setAttribute("download", "image");
-          downloadImage.href = downloadUrl;
-          downloadImage.click();
-          downloadImage.remove();
-        };
+          const saveImage = (downloadUrl: string) => {
+            const downloadImage = document.createElement("a");
+            document.body.appendChild(downloadImage);
+            downloadImage.setAttribute("download", 'ultimate-champion');
+            downloadImage.href = downloadUrl;
+            downloadImage.click();
+            downloadImage.remove();
+          };
 
-        saveImage(imageStringFodase)
+          saveImage(imageStringFodase)
+        }, 100);
       } else {
         this.dialogService
           .open(ImageViewerComponent, {
