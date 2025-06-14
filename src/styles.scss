@@ -42,6 +42,16 @@
 
   }
 }
+.back-button {
+  border: 1px solid white !important;
+
+  &:hover {
+    transition: ease 0.3s;
+    color: white !important;
+    background-color: transparent !important;
+
+  }
+}
 
 header.shepherd-header,
 div.shepherd-content {

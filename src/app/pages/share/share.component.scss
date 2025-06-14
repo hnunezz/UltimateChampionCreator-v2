@@ -102,7 +102,7 @@ ucc-button {
 }
 @media (max-width: 1000px) {
   main {
-    section {
+    section,.nick-section  {
       width: 90%;
     }
   }

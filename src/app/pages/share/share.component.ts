@@ -3,10 +3,11 @@ import html2canvas from 'html2canvas';
 import { UccButtonComponent } from '../../shared/components';
 import { DialogService } from '../../core/services/dialog.service';
 import { ImageViewerComponent } from './image-viewer/image-viewer.component';
+import { InputTextComponent } from "../../shared/components/ucc-input/ucc-input.component";
 
 @Component({
   selector: 'ucc-share',
-  imports: [UccButtonComponent],
+  imports: [UccButtonComponent, InputTextComponent],
   templateUrl: './share.component.html',
   styleUrl: './share.component.scss'
 })
@@ -21,6 +22,7 @@ export class ShareComponent {
   urlBasePassive = 'https://ddragon.leagueoflegends.com/cdn/15.10.1/img/passive/';
 
   capturedImage: any;
+  nick: string = '';
 
   get hasP(): boolean {
     return this.ultimateChampion().spells.hasP;
@@ -82,6 +84,10 @@ export class ShareComponent {
       }
     });
 
+  }
+
+  handleNick(event: any){
+    this.nick = event
   }
 
   private isMobile() {

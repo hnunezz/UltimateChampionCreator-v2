@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 export class InputTextComponent {
 
   placeholder = input<string>();
+  disabled = input<boolean>(false);
   type = input<string>('text');
   containerWidth = input<string>('100%');
   @Input() model = '';

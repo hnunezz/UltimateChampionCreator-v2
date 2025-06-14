@@ -2,7 +2,7 @@
   <aside class="left">
     <label>
       <strong>Ultimate Champion Creator
-        <i class="pi pi-info-circle" style="font-size: 1rem" (click)="moreInformation = true"></i>
+        <i class="fa-solid fa-circle-info" style="font-size: 1rem" (click)="moreInformation()"></i>
       </strong>
       <p>
         Crie o campeão perfeito no nosso aplicativo baseado em League of Legends! Selecione habilidades para os comandos
@@ -13,9 +13,9 @@
     </label>
 
     <div>
-      <i class="pi pi-github" style="font-size: 1rem"></i>
-      <i class="pi pi-instagram" style="font-size: 1rem"></i>
-      <i class="pi pi-twitter" style="font-size: 1rem"></i>
+      <i class="fa-brands fa-github" style="font-size: 1rem" (click)="goTo('https://github.com/hnunezz')"></i>
+      <i class="fa-brands fa-linkedin" style="font-size: 1rem" (click)="goTo('https://www.linkedin.com/in/henrique-nunes-de-almeida-ba897a1aa/')"></i>
+      <i class="fa-brands fa-instagram" style="font-size: 1rem" (click)="goTo('https://www.instagram.com/hnunes0/')"></i>
     </div>
   </aside>
 
@@ -30,44 +30,5 @@
 <!-- <p-dialog [(visible)]="moreInformation" [modal]="true" [style]="{width: '90%'}" styleClass='information-modal' [maximizable]="true"
   [draggable]="false" [resizable]="false">
   <ng-template pTemplate="header"> <strong>Ultimate Champion Creator</strong> </ng-template>
-  <label>
-    <p>
-      Bem-vindo ao nosso incrível aplicativo baseado em League of Legends, onde você tem o poder de criar o campeão
-      perfeito!
-    </p>
-    <p>
-      Imagine ser capaz de montar o seu próprio campeão, combinando as habilidades icônicas do jogo.
-      Com a nossa plataforma interativa, você pode preencher os comandos básicos do League of Legends - <b>P, Q, W, E e R</b>- com
-      habilidades selecionadas de qualquer campeão existente.
-    </p>
-    <p>
-      Explore um vasto leque de opções e deixe a sua criatividade fluir!
-      Escolha a habilidade perfeita para cada comando básico, combinando poderosos ataques, habilidades especiais e
-      efeitos
-      únicos.
-      Crie uma sinergia estratégica que se adapte ao seu estilo de jogo e surpreenda os seus adversários.
-    </p>
 
-    <p>
-      E a diversão não para por aí!
-      Após criar o seu campeão personalizado, você pode <i>compartilhar</i> orgulhosamente a sua combinação única de habilidades
-      nas
-      redes sociais.
-      Mostre aos seus amigos e à comunidade o resultado da sua criação, inspire outros jogadores e debata sobre as
-      estratégias
-      mais poderosas.
-    </p>
-    <p>
-      Com uma interface intuitiva e fácil de usar, o nosso aplicativo proporciona uma experiência descomplicada e
-      envolvente.
-      Seja você um jogador experiente ou um novato em League of Legends,
-      esta é a sua oportunidade de mergulhar na criação do campeão dos seus sonhos.
-      Então, prepare-se para elevar o nível do jogo e desafiar os limites da imaginação.
-      Aventure-se na criação do campeão perfeito, compartilhe o seu talento com o mundo e faça história em League of
-      Legends.
-    </p>
-    <p>
-      <i>O poder está em suas mãos, e a glória espera por você!</i>
-    </p>
-  </label>
 </p-dialog> -->

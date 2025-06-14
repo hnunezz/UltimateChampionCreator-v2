@@ -27,7 +27,6 @@ export class HomeComponent {
 
   hasChampionSelected: boolean = false;
   loading: boolean = false;
-  rule: boolean = false;
   championsList: IChampion[] = [];
 
   spellsList: ISpellList = {
@@ -149,10 +148,11 @@ export class HomeComponent {
         buttons: [STEPS_BUTTONS.cancel, STEPS_BUTTONS.next],
         classes: "custom-class-name-1 custom-class-name-2",
         id: "intro",
-        title: "Ultimate Champion Creator",
-        text: `Bem-Vindo, <br/> Vamos fazer um tour para entender a criação de seu campeão?`
+        title: "🚀 Ultimate Champion Creator!",
+        text: ` Bem-vindo, <br/> Vamos embarcar em um tour para criar seu campeão?`
       },
       {
+        canClickTarget: true,
         attachTo: {
           element: "ucc-button",
           on: "top"
@@ -164,8 +164,8 @@ export class HomeComponent {
         ],
         classes: "custom-class-name-1 custom-class-name-2",
         id: "installation",
-        title: "Seleção do campeão",
-        text: "Primeiro devemos escolher um campeão para ter suas habilidade modificadas!"
+        title: "🎮 Seleção do Campeão",
+        text: "Primeiro, vamos escolher um campeão base cujas habilidades serão modificadas!"
 
       },
       {
@@ -177,8 +177,23 @@ export class HomeComponent {
         buttons: [STEPS_BUTTONS.back, STEPS_BUTTONS.next],
         classes: "custom-class-name-1 custom-class-name-2",
         id: "usage",
-        title: "Seleção das habilidades",
-        text: "Devemos selecionar uma habilidade para cada tecla, incluindo a passiva <br/> Momento de pegar aquela skill roubada!",
+        title: "⚔️ Seleção das Habilidades",
+        text: "Agora é hora de escolher as habilidades do seu campeão! Vamos definir a habilidade para cada tecla, incluindo a passiva <br/> 🎯 Momento de pegar aquela skill “roubada”!",
+        cancelIcon: {
+          enabled: false
+        }
+      },
+      {
+        canClickTarget: true,
+        attachTo: {
+          element: ".nick-section",
+          on: "bottom"
+        },
+        scrollTo: true,
+        buttons: [STEPS_BUTTONS.back, STEPS_BUTTONS.next],
+        classes: "custom-class-name-1 custom-class-name-2",
+        id: "usage",
+        text: 'Adicione seu nick!',
         cancelIcon: {
           enabled: false
         }
@@ -192,7 +207,7 @@ export class HomeComponent {
         buttons: [STEPS_BUTTONS.back, STEPS_BUTTONS.cancel],
         classes: "custom-class-name-1 custom-class-name-2",
         id: "modal",
-        text: `Com seu campeão montado, compartilhe com seus amigos!`,
+        text: `📣 Agora que seu campeão está completo, é hora de mostrar sua criação ao mundo`,
         cancelIcon: {
           enabled: false
         }

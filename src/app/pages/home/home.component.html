@@ -7,7 +7,7 @@
       <span class="home-title"> {{ hasChampionSelected? ultimateChampion.champion.name : 'Bem-Vindo' }} </span>
 
       @if (!loading) {
-      <ucc-button [disable]="rule" styleClass="btn-primary" [label]="!hasChampionSelected ? 'SELECIONE UM CAMPEÃO' : 'TROCAR CAMPEÃO' " (onClick)="openChampionSelectDialog()"></ucc-button>
+      <ucc-button  styleClass="btn-primary" [label]="!hasChampionSelected ? 'SELECIONE UM CAMPEÃO' : 'TROCAR CAMPEÃO' " (onClick)="openChampionSelectDialog()"></ucc-button>
       }
     </label>
   </figure>
@@ -25,6 +25,3 @@
 }
 
 <!--!TODO LOGO-->
-<!--TODO LINKS RODAPE-->
-<!--TODO README GITHUB-->
-<!--TODO VERSAO PARA NAO RESPEITAR AS TECLAS DE HABILIDADES E PODER USAR QUAIS QUISER EM QQR POSICAO (SEM PASSIVA)-->
