@@ -152,7 +152,7 @@ export class HomeComponent {
         text: ` Bem-vindo, <br/> Vamos embarcar em um tour para criar seu campeão?`
       },
       {
-        canClickTarget: true,
+        canClickTarget: false,
         attachTo: {
           element: "ucc-button",
           on: "top"
@@ -184,7 +184,7 @@ export class HomeComponent {
         }
       },
       {
-        canClickTarget: true,
+        canClickTarget: false,
         attachTo: {
           element: ".nick-section",
           on: "bottom"
