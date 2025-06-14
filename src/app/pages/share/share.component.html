@@ -3,11 +3,7 @@
 <main class="flex flex-col justify-center items-center gap-[32px]">
   <div class="nick-section flex flex-col gap-2 w-[50%]">
     <span class="text-[#c89b3c] text-center text-[16px] font-bold italic text-start"> Seu nick: </span>
-    @if (hasChampionSelected()) { <!--!ALERT GO HORSE HERE-->
       <ucc-input placeholder="Seu nick aqui" (modelChange)="handleNick($event)" [(model)]="nick"/>
-    } @else {
-      <ucc-input [disabled]=" true" placeholder="Seu nick aqui" (modelChange)="handleNick($event)"/>
-    }
   </div>
 
   <section id="capture" class="w-[50%] bg-[#091428] rounded-sm flex flex-col" style="border: 1px solid #c89b3c;">

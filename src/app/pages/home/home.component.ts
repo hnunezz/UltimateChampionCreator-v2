@@ -184,7 +184,7 @@ export class HomeComponent {
         }
       },
       {
-        canClickTarget: false,
+        canClickTarget: true,
         attachTo: {
           element: ".nick-section",
           on: "bottom"
