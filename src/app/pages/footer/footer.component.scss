@@ -106,3 +106,21 @@ footer {
   }
 }
 
+.footer-help {
+  background-color: #191919;
+  height: 80px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  span {
+    color: white;
+
+    &.click:hover{
+      cursor: pointer;
+      transition: ease-in;
+      opacity: 0.8;
+    }
+  }
+
+}
