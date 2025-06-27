@@ -9,17 +9,15 @@
 
   <h1 class="text-[#c89b3c] text-center text-[20px] font-bold italic"> Você acaba de montar seu campeão perfeito! </h1>
   <h2 class="text-white text-center text-[16px] italic"> Compartilhe essa imagem com seu time</h2>
-  <h3 class="text-white text-center text-[13px] italic pb-[12px]"> No seu smartphone, segure a imagem e faça o download
+  <h3 class="text-white text-center text-[13px] italic pb-[12px]"> No seu smartphone, pressione a imagem e faça o
+    download
   </h3>
 
   <section class="btn-share pb-[12px]">
     <div class="btn-o">
-      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-        [attr.data-text]="'Esse é meu campeão perfeito:'+shareLink"
-        data-hashtags="#ultimate-champion-creator #leagueoflegends" data-show-count="false" class="btn x"
-        target="_blank">
-        <i class="fa-brands fa-x-twitter"></i>
-        <span>Compartilhar</span>
+      <a class="btn copy" (click)="copy()"
+        [attr.data-text]="'Esse é meu campeão perfeito:'+shareLink">
+        <i class="fa-solid fa-copy"></i> <span>Compartilhar</span>
       </a>
       <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
@@ -33,7 +31,7 @@
 
   <img src={{capturedImage}}>
 
-    <div style="display: none;">
+  <div style="display: none;">
     <img id="YourImage" src="{{capturedImage}}">
   </div>
 </main>

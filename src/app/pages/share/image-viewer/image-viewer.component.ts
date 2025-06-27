@@ -1,7 +1,9 @@
+import { Clipboard } from '@angular/cdk/clipboard';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { Component, inject, Inject, OnInit } from '@angular/core';
-import { ChampionSelectDialogComponent } from '../../champion-select/champion-select-dialog.component';
 import { ShareImageService } from '../../../core';
+import { SnackbarService } from '../../../shared/components/ucc-snackbar/snackbar.service';
+import { ChampionSelectDialogComponent } from '../../champion-select/champion-select-dialog.component';
 
 @Component({
   selector: 'ucc-image-viewer',
@@ -11,13 +13,14 @@ import { ShareImageService } from '../../../core';
 })
 export class ImageViewerComponent implements OnInit {
   private shareImageService = inject(ShareImageService);
+  private snackbarService = inject(SnackbarService);
 
   dialogRef = inject<DialogRef<boolean>>(DialogRef<ChampionSelectDialogComponent>);
 
   capturedImage: any;
   shareLink: string;
 
-  constructor(@Inject(DIALOG_DATA) public data: { capturedImage: any }) {
+  constructor(@Inject(DIALOG_DATA) public data: { capturedImage: any }, private clipboard: Clipboard) {
     this.capturedImage = data.capturedImage;
   }
 
@@ -52,5 +55,13 @@ export class ImageViewerComponent implements OnInit {
 
       saveImage(imageStringFodase)
     }, 100);
+
+    this.snackbarService.open('Seu download foi iniciado!')
+
+  }
+
+  copy() {
+    this.clipboard.copy(this.shareLink);
+    this.snackbarService.open('Link copiado com sucesso!')
   }
 }

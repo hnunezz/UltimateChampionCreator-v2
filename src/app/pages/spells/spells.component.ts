@@ -160,12 +160,14 @@ export class SpellsComponent {
     }
 
     const imageUrl = this.getUrlImagem(spell.image.full);
-    this.championsService.converterImagemParaDataURI(imageUrl).then(dataURI => {
-      this.selectedSpells[this.actualSpell].image.base64 = dataURI
-    })
-      .catch(erro => {
-        console.error('Erro ao converter imagem:', erro);
-      });
+    if (this.selectedSpells[this.actualSpell].image.base64 === '') {
+      this.championsService.converterImagemParaDataURI(imageUrl).then(dataURI => {
+        this.selectedSpells[this.actualSpell].image.base64 = dataURI
+      })
+        .catch(erro => {
+          console.error('Erro ao converter imagem:', erro);
+        });
+    }
 
 
     this.spellsChange.emit(this.selectedSpells)
