@@ -17,3 +17,56 @@ main {
     width: 90%;
   }
 }
+.btn-share{
+  display: flex;
+  // flex-direction: column;
+  gap: 24px;
+}
+
+.btn {
+  position: relative;
+  padding: 1px 20px;
+  color: #fff;
+  border-radius: 9999px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  height: 50px;
+  width: 150px;
+
+  &.x {
+    transition: ease-out 0.3s;
+    border: 1px solid black;
+    background-color: #000;
+  }
+
+  &.download {
+    transition: ease-out 0.3s;
+    border: 1px solid #c89b3c;
+    background-color: #c89b3c;
+  }
+
+  span {
+    margin-left: 3px;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    transition: ease 0.3s;
+
+    &.download {
+      background-color: white;
+      border-color: white;
+      color: #c89b3c;
+    }
+    &.x {
+      background-color: #000000af;
+      border-color: white;
+    }
+    // opacity: 0.8;
+  }
+}

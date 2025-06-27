@@ -56,37 +56,19 @@ export class ShareComponent {
 
       });
 
-      if (!this.isMobile()) {
-        setTimeout(() => {
-          const imageElement = document.getElementById("YourImage") as HTMLElement;
-          const imageStringFodase = imageElement.getAttribute("src") as string;
-
-          const saveImage = (downloadUrl: string) => {
-            const downloadImage = document.createElement("a");
-            document.body.appendChild(downloadImage);
-            downloadImage.setAttribute("download", 'ultimate-champion');
-            downloadImage.href = downloadUrl;
-            downloadImage.click();
-            downloadImage.remove();
-          };
-
-          saveImage(imageStringFodase)
-        }, 100);
-      } else {
-        this.dialogService
-          .open(ImageViewerComponent, {
-            data: {
-              capturedImage: this.capturedImage
-            }
-          })
-          .subscribe((response) => {
-          });
-      }
+      this.dialogService
+        .open(ImageViewerComponent, {
+          data: {
+            capturedImage: this.capturedImage
+          }
+        })
+        .subscribe((response) => {
+        });
     });
 
   }
 
-  handleNick(event: any){
+  handleNick(event: any) {
     this.nick = event
   }
 

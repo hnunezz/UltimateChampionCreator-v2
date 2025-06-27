@@ -1,14 +1,39 @@
 <main class=" bg-[#030b12] flex flex-col relative">
   <header>
-    <svg class="hover:opacity-[0.8] cursor-pointer" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" (click)="dialogRef.close()">
-      <path d="M30 10L10 30" stroke="#C89B3C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M10 10L30 30" stroke="#C89B3C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <svg class="hover:opacity-[0.8] cursor-pointer" width="40" height="40" viewBox="0 0 40 40" fill="none"
+      xmlns="http://www.w3.org/2000/svg" (click)="dialogRef.close()">
+      <path d="M30 10L10 30" stroke="#C89B3C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M10 10L30 30" stroke="#C89B3C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
   </header>
 
   <h1 class="text-[#c89b3c] text-center text-[20px] font-bold italic"> Você acaba de montar seu campeão perfeito! </h1>
   <h2 class="text-white text-center text-[16px] italic"> Compartilhe essa imagem com seu time</h2>
-  <h3 class="text-white text-center text-[13px] italic pb-[32px]"> No seu smartphone, segure a imagem e faça o download</h3>
+  <h3 class="text-white text-center text-[13px] italic pb-[12px]"> No seu smartphone, segure a imagem e faça o download
+  </h3>
+
+  <section class="btn-share pb-[12px]">
+    <div class="btn-o">
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+        [attr.data-text]="'Esse é meu campeão perfeito:'+shareLink"
+        data-hashtags="#ultimate-champion-creator #leagueoflegends" data-show-count="false" class="btn x"
+        target="_blank">
+        <i class="fa-brands fa-x-twitter"></i>
+        <span>Compartilhar</span>
+      </a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <div class="btn-o">
+      <a class="btn download" (click)="downloadImage()">
+        <i class="fa-solid fa-cloud-arrow-down"></i> <span>Baixar</span>
+      </a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+  </section>
 
   <img src={{capturedImage}}>
+
+    <div style="display: none;">
+    <img id="YourImage" src="{{capturedImage}}">
+  </div>
 </main>
