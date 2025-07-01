@@ -25,7 +25,7 @@ export class ImageViewerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.saveImage();
+    // this.saveImage();
   }
 
   get() {
