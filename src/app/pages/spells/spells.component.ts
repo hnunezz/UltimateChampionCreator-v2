@@ -21,7 +21,7 @@ export class SpellsComponent {
   urlBaseSpell = 'https://ddragon.leagueoflegends.com/cdn/15.10.1/img/spell/';
   urlBasePassive = 'https://ddragon.leagueoflegends.com/cdn/15.10.1/img/passive/';
 
-  actualSpell: SpellTypes;
+  actualSpell: SpellTypes | null;
   model: string;
 
   private dataSource: IChampionSpell[];
@@ -105,6 +105,7 @@ export class SpellsComponent {
     //?reset list to dont loading images for spell list when open image view dialog
     this.championsService.finalizeSpellView$().subscribe(() => {
       this.list = []
+      this.actualSpell = null
     })
   }
 
@@ -160,16 +161,16 @@ export class SpellsComponent {
 
     const spellKey = this.actualSpell;
 
-    if (['P', 'Q', 'E', 'W', 'R'].includes(spellKey)) {
-      this.selectedSpells[`has${spellKey}`] = true;
-      this.selectedSpells[spellKey] = spell;
+    if (['P', 'Q', 'E', 'W', 'R'].includes(spellKey as SpellTypes)) {
+      this.selectedSpells[`has${spellKey as SpellTypes}`] = true;
+      this.selectedSpells[spellKey as SpellTypes] = spell;
     }
 
     const imageUrl = this.getUrlImagem(spell.image.full);
     // if (this.selectedSpells[this.actualSpell].image.base64 === '') {
 
     this.championsService.converterImagemParaDataURI(imageUrl).then(dataURI => {
-      this.selectedSpells[this.actualSpell].image.base64 = dataURI
+      this.selectedSpells[this.actualSpell as SpellTypes].image.base64 = dataURI
     })
       .catch(erro => {
         console.error('Erro ao converter imagem:', erro);
