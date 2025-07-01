@@ -1,4 +1,4 @@
-import { NgClass, ViewportScroller } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component, inject, input, output } from '@angular/core';
 import { ChampionsService, IChampionSpell, ISpellList } from '../../core';
 import { InputTextComponent, TriangleComponent } from '../../shared/components';
@@ -101,6 +101,11 @@ export class SpellsComponent {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       this.isMobile = true;
     }
+
+    //?reset list to dont loading images for spell list when open image view dialog
+    this.championsService.finalizeSpellView$().subscribe(() => {
+      this.list = []
+    })
   }
 
   setSpellSelected(spellType: SpellTypes) {
@@ -147,6 +152,7 @@ export class SpellsComponent {
     );
   }
 
+  lastClick = ''
   selectHability(spell: any) {
     this.list.forEach(item => {
       item.selected = item === spell;
@@ -160,14 +166,15 @@ export class SpellsComponent {
     }
 
     const imageUrl = this.getUrlImagem(spell.image.full);
-    if (this.selectedSpells[this.actualSpell].image.base64 === '') {
-      this.championsService.converterImagemParaDataURI(imageUrl).then(dataURI => {
-        this.selectedSpells[this.actualSpell].image.base64 = dataURI
-      })
-        .catch(erro => {
-          console.error('Erro ao converter imagem:', erro);
-        });
-    }
+    // if (this.selectedSpells[this.actualSpell].image.base64 === '') {
+
+    this.championsService.converterImagemParaDataURI(imageUrl).then(dataURI => {
+      this.selectedSpells[this.actualSpell].image.base64 = dataURI
+    })
+      .catch(erro => {
+        console.error('Erro ao converter imagem:', erro);
+      });
+    // }
 
 
     this.spellsChange.emit(this.selectedSpells)

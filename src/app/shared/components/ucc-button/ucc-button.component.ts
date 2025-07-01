@@ -11,6 +11,7 @@ export class UccButtonComponent {
   label = input<string>();
   styleClass = input<string>();
   disable = input<boolean>(false);
+  loading = input<boolean>(false);
 
   @Output() onClick = new EventEmitter();
 

@@ -1,3 +1,4 @@
+import { ChampionsService } from './../../core/services/champions.service';
 import { Component, inject, input } from '@angular/core';
 import html2canvas from 'html2canvas';
 import { UccButtonComponent } from '../../shared/components';
@@ -13,6 +14,7 @@ import { InputTextComponent } from "../../shared/components/ucc-input/ucc-input.
 })
 export class ShareComponent {
   private dialogService = inject(DialogService);
+  private championsService = inject(ChampionsService);
 
   ultimateChampion = input<any>();
   hasChampionSelected = input<boolean>();
@@ -23,6 +25,7 @@ export class ShareComponent {
 
   capturedImage: any;
   nick: string = '';
+  loading: boolean = false;
 
   get hasP(): boolean {
     return this.ultimateChampion().spells.hasP;
@@ -43,33 +46,35 @@ export class ShareComponent {
     return !(this.hasP && this.hasQ && this.hasW && this.hasE && this.hasR && this.hasChampionSelected() as boolean);
   }
 
-  download() {
-    html2canvas(document.querySelector("#capture") as HTMLElement).then(async canvas => {
-      this.capturedImage = canvas.toDataURL();
+  imageView() {
+    this.championsService.finalizeSpellViewSubject.next(true);
 
-      canvas.toBlob(function (blob) {
-        var reader = new FileReader();
-        reader.readAsDataURL(blob as Blob);
-        reader.onloadend = function () {
-          let base64data = reader.result;
-        }
 
+    setTimeout(() => {
+
+      this.loading = true;
+      html2canvas(document.querySelector("#capture") as HTMLElement).then(canvas => {
+        this.capturedImage = canvas.toDataURL();
+        this.loading = false;
+        this.openImageViewer();
       });
-
-      this.dialogService
-        .open(ImageViewerComponent, {
-          data: {
-            capturedImage: this.capturedImage
-          }
-        })
-        .subscribe((response) => {
-        });
-    });
+    }, 100);
 
   }
 
   handleNick(event: any) {
     this.nick = event
+  }
+
+  private openImageViewer() {
+    this.dialogService
+      .open(ImageViewerComponent, {
+        data: {
+          capturedImage: this.capturedImage
+        }
+      })
+      .subscribe((response) => {
+      });
   }
 
   private isMobile() {

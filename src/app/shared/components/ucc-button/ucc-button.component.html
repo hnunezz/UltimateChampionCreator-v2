@@ -1,8 +1,5 @@
-<section
-  [class]="'btn ' + styleClass()"
-  [ngClass]="{'disable': disable()}"
-  (click)="onClickEmitter()"
->
+@if (!loading()) {
+<section [class]="'btn ' + styleClass()" [ngClass]="{'disable': disable()}" (click)=" onClickEmitter()">
 
   <!--? Clip-Path To Outside Button Border-->
   <div id="outside-border-button">
@@ -11,6 +8,20 @@
     <div class="diagonal-bottom"></div>
   </div>
   <!--? Clip-Path To Outside Button Border-->
-
   <span class="button">{{ label() }}</span>
 </section>
+} @else {
+<section [class]="'btn ' + styleClass()" [ngClass]="{'disable': true}" (click)=" onClickEmitter()">
+
+  <!--? Clip-Path To Outside Button Border-->
+  <div id="outside-border-button">
+    <div class="diagonal-top"></div>
+    <div class="border"></div>
+    <div class="diagonal-bottom"></div>
+  </div>
+  <!--? Clip-Path To Outside Button Border-->
+  <span class="button loading gap-[10px] cursor-not-allowed">
+    Gerando imagem...
+    <i class="fa-solid fa-bolt-lightning fa-bounce"></i> </span>
+</section>
+}

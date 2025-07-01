@@ -108,11 +108,11 @@
           (modelChange)="handleSearch()"
         ></ucc-input>
 
-        <div id="container-list" class="container-list max-h-[570px] overflow-auto flex flex-col gap-[20px]">
+        <div id="container-list" class="container-list max-h-[570px] overflow-auto flex flex-col gap-[60px]">
 
           @if (list.length > 0) {
             <!-- <ag-virtual-scroll #vs [items]="listGeneralSpells[selectedSpell].spells" [min-row-height]="120" class="box-border"> -->
-              @for (spell of list; track $index) {'
+              @for (spell of list; track $index) {
               <div class="demo-item">
                 <section
                   class="champion-spell-details flex gap-[48px] cursor-pointer"

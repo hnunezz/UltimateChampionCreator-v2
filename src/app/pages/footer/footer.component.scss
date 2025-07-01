@@ -104,6 +104,13 @@ footer {
       }
     }
   }
+
+    .footer-help {
+    flex-direction: column !important;
+    gap: 20px;
+    padding: 20px 0px;
+    height: 150px !important;
+  }
 }
 
 .footer-help {
