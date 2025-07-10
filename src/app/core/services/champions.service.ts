@@ -38,96 +38,24 @@ export class ChampionsService {
     );
   }
 
-  // async converterImagemParaDataURI(url: string): Promise<string> {
-  //   const resposta = await fetch(url);
-  //   const blob = await resposta.blob();
-  //   return new Promise((resolve, reject) => {
-  //     const leitor = new FileReader();
-  //     leitor.onloadend = () => {
-  //       if (leitor.result && typeof leitor.result === 'string') {
-  //         resolve(leitor.result);
-  //       } else {
-  //         reject(new Error('Falha ao converter o blob em Data URI.'));
-  //       }
-  //     };
-  //     leitor.onerror = () => reject(new Error('Erro ao ler o blob.'));
-  //     leitor.readAsDataURL(blob);
-  //   });
-  // }
+  async converterImagemParaDataURI(url: string): Promise<string> {
+    const resposta = await fetch(url);
+    const blob = await resposta.blob();
+    return new Promise((resolve, reject) => {
+      const leitor = new FileReader();
+      leitor.onloadend = () => {
+        if (leitor.result && typeof leitor.result === 'string') {
+          resolve(leitor.result);
+        } else {
+          reject(new Error('Falha ao converter o blob em Data URI.'));
+        }
+      };
+      leitor.onerror = () => reject(new Error('Erro ao ler o blob.'));
+      leitor.readAsDataURL(blob);
+    });
+  }
 
   finalizeSpellView$(): Observable<boolean> {
     return this.finalizeSpellViewSubject.asObservable();
-  }
-
-  cacheDataURI = new Map<string, string>();
-  preloadQueue: string[] = [];
-  preloadConcurrency = 4;
-  activePreloads = 0;
-
-  /**
-   * Converte uma imagem para Data URI com cache e preload.
-   */
-  async converterImagemParaDataURI(url: string): Promise<string> {
-    if (this.cacheDataURI.has(url)) {
-      return this.cacheDataURI.get(url)!;
-    }
-
-    const dataURI = await this.fetchAndConvert(url);
-    this.cacheDataURI.set(url, dataURI);
-    return dataURI;
-  }
-
-  /**
-   * Pré-carrega uma lista de URLs com limite de concorrência.
-   */
-  preloadImagens(urls: string[]) {
-    this.preloadQueue.push(...urls);
-
-    // Dispara múltiplos carregamentos respeitando o limite
-    for (let i = 0; i < this.preloadConcurrency; i++) {
-      this.processarProximaPreload();
-    }
-  }
-
-  async processarProximaPreload() {
-    if (this.activePreloads >= this.preloadConcurrency || this.preloadQueue.length === 0) {
-      return;
-    }
-
-    const url = this.preloadQueue.shift();
-    if (!url || this.cacheDataURI.has(url)) {
-      this.processarProximaPreload(); // Pula imagens já no cache
-      return;
-    }
-
-    this.activePreloads++;
-
-    try {
-      const dataURI = await this.fetchAndConvert(url);
-      this.cacheDataURI.set(url, dataURI);
-    } catch (erro) {
-      console.warn(`Erro ao pré-carregar imagem ${url}`, erro);
-    } finally {
-      this.activePreloads--;
-      this.processarProximaPreload(); // Continua fila
-    }
-  }
-
-  async fetchAndConvert(url: string): Promise<string> {
-    const resposta = await fetch(url);
-
-    if (!resposta.ok) {
-      throw new Error(`Erro ao buscar imagem: ${resposta.status} ${resposta.statusText}`);
-    }
-
-    const buffer = await resposta.arrayBuffer();
-    const base64 = this.arrayBufferToBase64(buffer);
-    const mimeType = resposta.headers.get('Content-Type') || 'image/jpeg';
-    return `data:${mimeType};base64,${base64}`;
-  }
-
-  arrayBufferToBase64(buffer: ArrayBuffer): string {
-    const binary = String.fromCharCode(...new Uint8Array(buffer));
-    return btoa(binary);
   }
 }
