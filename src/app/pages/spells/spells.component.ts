@@ -1,4 +1,4 @@
-import { NgClass } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 import { Component, inject, input, output } from '@angular/core';
 import { ChampionsService, IChampionSpell, ISpellList } from '../../core';
 import { InputTextComponent, TriangleComponent } from '../../shared/components';
@@ -8,7 +8,7 @@ type SpellTypes = 'P' | 'Q' | 'E' | 'W' | 'R';
 
 @Component({
   selector: 'ucc-spells',
-  imports: [NgClass, TriangleComponent, InputTextComponent, SanitizeHtmlPipe],
+  imports: [NgClass, TriangleComponent, InputTextComponent, SanitizeHtmlPipe,NgOptimizedImage],
   templateUrl: './spells.component.html',
   styleUrl: './spells.component.scss'
 })

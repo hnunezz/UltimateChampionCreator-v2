@@ -2,11 +2,11 @@ import { Component, Inject, inject, input } from '@angular/core';
 import { InputTextComponent, UccButtonComponent } from '../../shared/components';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { ChampionsService, IChampion } from '../../core';
-import { NgClass } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'ucc-champion-select-dialog',
-  imports: [UccButtonComponent, InputTextComponent, NgClass],
+  imports: [UccButtonComponent, InputTextComponent, NgClass, ],
   templateUrl: './champion-select-dialog.component.html',
   styleUrl: './champion-select-dialog.component.scss'
 })
@@ -44,7 +44,7 @@ export class ChampionSelectDialogComponent {
   handleSelectChampion() {
     const champSelect = this.championDataSource.find((champ) => champ.selected) as IChampion;
 
-    const imageUrl = this.urlBaseSplash + champSelect?.id+'_0.jpg';
+    const imageUrl = this.urlBaseSplash + champSelect?.id + '_0.jpg';
     this.championsService.converterImagemParaDataURI(imageUrl).then(dataURI => {
       champSelect.image.base64 = dataURI
     })

@@ -1,15 +1,13 @@
 <section class="flex flex-col justify-center items-center gap-[96px] relative">
-  <div class="shadow w-full h-[20%] absolute -top-[228px]" style="background: linear-gradient(180deg, rgba(1, 10, 19, 0) 0%, #010a13 90%);"></div>
+  <div class="shadow w-full h-[20%] absolute -top-[305px]"
+    style="background: linear-gradient(180deg, rgba(1, 10, 19, 0) 0%, #010a13 90%);"></div>
   <div id="champion-spell-content" class="champion-spell-content">
     <div class="champion-spell-content_P" [ngClass]="{'active': actualSpell === 'P'}" (click)="setSpellSelected('P')">
 
       @if (selectedSpells['P'].championName !== '') {
-        <img
-          loading="lazy"
-          [src]="urlBasePassive + selectedSpells['P'].image.full"
-          [alt]="selectedSpells['P'].championName"
-          onerror="this.onerror=null;this.src='https://opgg-static.akamaized.net/images/profile_icons/profileIcon29.jpg';"
-        >
+      <img loading="lazy" [ngSrc]="urlBasePassive + selectedSpells['P'].image.full" width="80" height="80"
+        [alt]="selectedSpells['P'].championName"
+        onerror="this.onerror=null;this.src='https://opgg-static.akamaized.net/images/profile_icons/profileIcon29.jpg';">
       }
       <strong>P</strong>
 
@@ -21,16 +19,12 @@
     <hr>
 
     <div class="spell-keys">
-      <div class="champion-spell-content_Q" [ngClass]="{'active': actualSpell === 'Q'}"
-        (click)="setSpellSelected('Q')">
+      <div class="champion-spell-content_Q" [ngClass]="{'active': actualSpell === 'Q'}" (click)="setSpellSelected('Q')">
 
         @if (selectedSpells['Q'].championName !== '') {
-          <img
-            loading="lazy"
-            [src]="urlBaseSpell + selectedSpells['Q'].image.full"
-            [alt]="selectedSpells['Q'].championName"
-            onerror="this.onerror=null;this.src='https://opgg-static.akamaized.net/images/profile_icons/profileIcon29.jpg';"
-          >
+        <img loading="lazy" [ngSrc]="urlBaseSpell + selectedSpells['Q'].image.full" width="80" height="80"
+          [alt]="selectedSpells['Q'].championName"
+          onerror="this.onerror=null;this.src='https://opgg-static.akamaized.net/images/profile_icons/profileIcon29.jpg';">
         }
 
         <strong>Q</strong>
@@ -40,16 +34,12 @@
         }
       </div>
 
-      <div class="champion-spell-content_W" [ngClass]="{'active': actualSpell === 'W'}"
-        (click)="setSpellSelected('W')">
+      <div class="champion-spell-content_W" [ngClass]="{'active': actualSpell === 'W'}" (click)="setSpellSelected('W')">
 
         @if (selectedSpells['W'].championName !== '') {
-          <img
-            loading="lazy"
-            [src]="urlBaseSpell + selectedSpells['W'].image.full"
-            [alt]="selectedSpells['W'].championName"
-            onerror="this.onerror=null;this.src='https://opgg-static.akamaized.net/images/profile_icons/profileIcon29.jpg';"
-          >
+        <img loading="lazy" [ngSrc]="urlBaseSpell + selectedSpells['W'].image.full" width="80" height="80"
+          [alt]="selectedSpells['W'].championName"
+          onerror="this.onerror=null;this.src='https://opgg-static.akamaized.net/images/profile_icons/profileIcon29.jpg';">
         }
 
         <strong>W</strong>
@@ -59,16 +49,12 @@
         }
       </div>
 
-      <div class="champion-spell-content_E" [ngClass]="{'active': actualSpell === 'E'}"
-        (click)="setSpellSelected('E')">
+      <div class="champion-spell-content_E" [ngClass]="{'active': actualSpell === 'E'}" (click)="setSpellSelected('E')">
 
         @if (selectedSpells['E'].championName !== '') {
-          <img
-            loading="lazy"
-            [src]="urlBaseSpell + selectedSpells['E'].image.full"
-            [alt]="selectedSpells['E'].championName"
-            onerror="this.onerror=null;this.src='https://opgg-static.akamaized.net/images/profile_icons/profileIcon29.jpg';"
-          >
+        <img loading="lazy" [ngSrc]="urlBaseSpell + selectedSpells['E'].image.full" width="80" height="80"
+          [alt]="selectedSpells['E'].championName"
+          onerror="this.onerror=null;this.src='https://opgg-static.akamaized.net/images/profile_icons/profileIcon29.jpg';">
         }
 
         <strong>E</strong>
@@ -78,16 +64,12 @@
         }
       </div>
 
-      <div class="champion-spell-content_R" [ngClass]="{'active': actualSpell === 'R'}"
-        (click)="setSpellSelected('R')">
+      <div class="champion-spell-content_R" [ngClass]="{'active': actualSpell === 'R'}" (click)="setSpellSelected('R')">
 
         @if (selectedSpells['R'].championName !== '') {
-          <img
-            loading="lazy"
-            [src]="urlBaseSpell + selectedSpells['R'].image.full"
-            [alt]="selectedSpells['R'].championName"
-            onerror="this.onerror=null;this.src='https://opgg-static.akamaized.net/images/profile_icons/profileIcon29.jpg';"
-          >
+        <img loading="lazy" [ngSrc]="urlBaseSpell + selectedSpells['R'].image.full" width="80" height="80"
+          [alt]="selectedSpells['R'].championName"
+          onerror="this.onerror=null;this.src='https://opgg-static.akamaized.net/images/profile_icons/profileIcon29.jpg';">
         }
 
         <strong>R</strong>
@@ -99,79 +81,62 @@
     </div>
   </div>
 
-  <div id="spell-list" class="spell-list w-[70%] h-[700px] bg-[#091428] rounded-sm flex flex-col" style="border: 1px solid #c89b3c;">
+  <div id="spell-list" class="spell-list w-[70%] h-[700px] bg-[#091428] rounded-sm flex flex-col"
+    style="border: 1px solid #c89b3c;">
     <main class="px-[70px] pt-[30px] flex flex-col gap-[30px]">
       @if (list) {
-        <ucc-input
-          placeholder="Pesquise a habilidade ou campeão"
-          [(model)]="model"
-          (modelChange)="handleSearch()"
-        ></ucc-input>
+      <ucc-input placeholder="Pesquise a habilidade ou campeão" [(model)]="model"
+        (modelChange)="handleSearch()"></ucc-input>
 
-        <div id="container-list" class="container-list max-h-[570px] overflow-auto flex flex-col gap-[60px]">
+      <div id="container-list" class="container-list max-h-[570px] overflow-auto flex flex-col gap-[60px]">
 
-          @if (list.length > 0) {
-            <!-- <ag-virtual-scroll #vs [items]="listGeneralSpells[selectedSpell].spells" [min-row-height]="120" class="box-border"> -->
-              @for (spell of list; track $index) {
-              <div class="demo-item">
-                <section
-                  class="champion-spell-details flex gap-[48px] cursor-pointer"
-                  [ngClass]="{'active': spell.selected}"
-                  (click)="selectHability(spell)"
-                  >
-                  <figure class="h-[80px] w-[80px]">
-                    <img class="h-[80px] w-[80px] rounded-sm max-w-fit"
-                      [src]="getUrlImagem(spell.image.full)"
-                      [alt]="spell.championName"
-                    >
-                  </figure>
+        @if (list.length > 0) {
+        <!-- <ag-virtual-scroll #vs [items]="listGeneralSpells[selectedSpell].spells" [min-row-height]="120" class="box-border"> -->
+        @for (spell of list; track $index) {
+        <div class="demo-item">
+          <section class="champion-spell-details flex gap-[48px] cursor-pointer" [ngClass]="{'active': spell.selected}"
+            (click)="selectHability(spell)">
+            <figure class="h-[80px] w-[80px]">
+              <img class="h-[80px] w-[80px] rounded-sm max-w-fit" [src]="getUrlImagem(spell.image.full)"
+                [alt]="spell.championName">
+            </figure>
 
-                  <div class="details">
-                    <label>
-                      <span class="champion-name"> {{ spell.championName }}
-                      </span>
-                      <span class="spell-name">
-                        {{spell.name}}
-                      </span>
-                    </label>
+            <div class="details">
+              <label>
+                <span class="champion-name"> {{ spell.championName }}
+                </span>
+                <span class="spell-name">
+                  {{spell.name}}
+                </span>
+              </label>
 
 
-                    <span
-                      class="spell-description"
-                      [ngClass]="{'hovered': spell.selected}"
-                      [innerHTML]="spell.description | sanitizeHtml"
-                    > </span>
-                  </div>
-                </section>
-              </div>
-              }
-            <!-- </ag-virtual-scroll> -->
-          } @else {
-             <div class="noData">
-              <div class="flex flex-col">
-                <strong>  Nenhuma Habilidade Encontrada </strong>
-                <small> Voltar base já!</small>
-              </div>
-
-              <img
-                src="assets/img/no-search.png"
-                alt="no-search.png"
-                loading="lazy"
-          >
+              <span class="spell-description" [ngClass]="{'hovered': spell.selected}"
+                [innerHTML]="spell.description | sanitizeHtml"> </span>
+            </div>
+          </section>
         </div>
-          }
+        }
+        <!-- </ag-virtual-scroll> -->
+        } @else {
+        <div class="noData">
+          <div class="flex flex-col">
+            <strong> Nenhuma Habilidade Encontrada </strong>
+            <small> Voltar base já!</small>
+          </div>
+
+          <img src="assets/img/no-search.png" alt="no-search.png" loading="lazy">
         </div>
+        }
+      </div>
       }
       @else {
-        <div class="noData">
-          <strong> Selecione uma Habilidade para iniciar! </strong>
+      <div class="noData">
+        <strong> Selecione uma Habilidade para iniciar! </strong>
 
-          <img
-            src="assets/img/SummerSplit2020MissionThumbnail.png"
-            alt="SummerSplit2020MissionThumbnail.png"
-            loading="lazy"
-          >
-        </div>
+        <img src="assets/img/SummerSplit2020MissionThumbnail.png" alt="SummerSplit2020MissionThumbnail.png"
+          loading="lazy">
+      </div>
       }
     </main>
 

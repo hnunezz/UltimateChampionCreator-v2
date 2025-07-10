@@ -17,7 +17,7 @@
       }
 
       <li class="w-full h-[49px] relative">
-        <div class="w-full h-full absolute -top-[49px]"
+        <div class="w-full h-full absolute -top-[47px]"
           style="background: linear-gradient(180deg,rgba(1, 10, 19, 0) 0%,#091428 80%);">
           <label class="flex px-[30px] justify-between">
             @if (hasChampionSelected()) {
@@ -42,7 +42,7 @@
         <strong class="text-white w-[10px]">P</strong>
 
         <figure>
-          <img loading="lazy" [src]="!hasP ? 'assets/img/no-selected.png' : ultimateChampion().spells['P'].image.base64"
+          <img loading="lazy" width="60" height="60" [ngSrc]="!hasP ? 'assets/img/no-selected.png' : ultimateChampion().spells['P'].image.base64"
             [alt]="!hasP ? '?' : ultimateChampion().spells['P']?.championName">
         </figure>
 
@@ -58,7 +58,7 @@
         <strong class="text-white w-[10px]">Q</strong>
 
         <figure>
-          <img loading="lazy" [src]="!hasQ ? 'assets/img/no-selected.png' : ultimateChampion().spells['Q'].image.base64"
+          <img loading="lazy" width="60" height="60" [ngSrc]="!hasQ ? 'assets/img/no-selected.png' : ultimateChampion().spells['Q'].image.base64"
             [alt]="!hasQ ? '?' : ultimateChampion().spells['Q']?.championName">
         </figure>
 
@@ -74,7 +74,7 @@
         <strong class="text-white w-[10px]">W</strong>
 
         <figure>
-          <img loading="lazy" [src]="!hasW ? 'assets/img/no-selected.png' : ultimateChampion().spells['W'].image.base64"
+          <img loading="lazy"  width="60" height="60" [ngSrc]="!hasW ? 'assets/img/no-selected.png' : ultimateChampion().spells['W'].image.base64"
             [alt]="!hasW ? '?' : ultimateChampion().spells['W']?.championName">
         </figure>
 
@@ -90,7 +90,7 @@
         <strong class="text-white w-[10px]">E</strong>
 
         <figure>
-          <img loading="lazy" [src]="!hasE ? 'assets/img/no-selected.png' : ultimateChampion().spells['E'].image.base64"
+          <img loading="lazy" width="60" height="60" [ngSrc]="!hasE ? 'assets/img/no-selected.png' : ultimateChampion().spells['E'].image.base64"
             [alt]="!hasE ? '?' : ultimateChampion().spells['E']?.championName">
         </figure>
 
@@ -105,7 +105,7 @@
       <li class="champion-spell-details">
         <strong class="text-white w-[10px]">R</strong>
         <figure>
-          <img loading="lazy" [src]="!hasR ? 'assets/img/no-selected.png' : ultimateChampion().spells['R'].image.base64"
+          <img loading="lazy" width="60" height="60" [ngSrc]="!hasR ? 'assets/img/no-selected.png' : ultimateChampion().spells['R'].image.base64"
             [alt]="!hasR ? '?' : ultimateChampion().spells['R']?.championName">
         </figure>
 

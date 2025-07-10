@@ -5,10 +5,11 @@ import { UccButtonComponent } from '../../shared/components';
 import { DialogService } from '../../core/services/dialog.service';
 import { ImageViewerComponent } from './image-viewer/image-viewer.component';
 import { InputTextComponent } from "../../shared/components/ucc-input/ucc-input.component";
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'ucc-share',
-  imports: [UccButtonComponent, InputTextComponent],
+  imports: [UccButtonComponent, InputTextComponent,NgOptimizedImage],
   templateUrl: './share.component.html',
   styleUrl: './share.component.scss'
 })
